@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 import ThemeToggleButton from "./ThemeToggleButton";
 import { useRouter } from "next/router";
+import DropdownMenu from "./DropdownMenu";
 
 export default function Nav() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function Nav() {
           <Logo />
           <Link
             href={"/about"}
-            className={`hover:underline underline-offset-4 p-2 ${
+            className={`sm:inline-block hidden hover:underline underline-offset-4 p-2 ${
               activeLink("/about", pathname) ? "bg-glassTeal text-black" : ""
             }`}
           >
@@ -26,14 +27,19 @@ export default function Nav() {
           </Link>
           <Link
             href={"/contact"}
-            className={`hover:underline underline-offset-4 p-2 ${
+            className={`sm:inline-block hidden hover:underline underline-offset-4 p-2 ${
               activeLink("/contact", pathname) ? "bg-glassTeal text-black" : ""
             }`}
           >
             Contact
           </Link>
         </div>
-        <ThemeToggleButton />
+        <div className="flex gap-4">
+          <ThemeToggleButton />
+          <div className="sm:hidden block">
+            <DropdownMenu />
+          </div>
+        </div>
       </div>
     </div>
   );
