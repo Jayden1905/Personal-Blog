@@ -1,0 +1,40 @@
+import Link from "next/link";
+import Logo from "./Logo";
+import ThemeToggleButton from "./ThemeToggleButton";
+import { useRouter } from "next/router";
+
+export default function Nav() {
+  const router = useRouter();
+  const pathname = router.pathname;
+
+  const activeLink = (href: string, currentPath: string) => {
+    return currentPath === href ? true : false;
+  };
+
+  return (
+    <div className="backdrop-blur-lg dark:bg-zinc-900 fixed w-full py-4">
+      <div className="max-w-3xl mx-auto flex justify-between items-center px-4">
+        <div className="flex justify-center items-center gap-8">
+          <Logo />
+          <Link
+            href={"/about"}
+            className={`hover:underline underline-offset-4 p-2 ${
+              activeLink("/about", pathname) ? "bg-glassTeal text-black" : ""
+            }`}
+          >
+            About
+          </Link>
+          <Link
+            href={"/contact"}
+            className={`hover:underline underline-offset-4 p-2 ${
+              activeLink("/contact", pathname) ? "bg-glassTeal text-black" : ""
+            }`}
+          >
+            Contact
+          </Link>
+        </div>
+        <ThemeToggleButton />
+      </div>
+    </div>
+  );
+}
