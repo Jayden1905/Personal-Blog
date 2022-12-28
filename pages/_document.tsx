@@ -11,7 +11,7 @@ export default class Document extends NextDocument {
             rel="stylesheet"
           />
         </Head>
-        <body className="dark:bg-zinc-900 bg-zinc-200 font-ibm">
+        <body className="dark:bg-zinc-900 bg-zinc-200 font-ibm !scroll-auto">
           <Main />
           <NextScript />
         </body>

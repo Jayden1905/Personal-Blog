@@ -19,6 +19,7 @@ export default function Nav() {
           <Logo />
           <Link
             href={"/about"}
+            scroll={false}
             className={`sm:inline-block hidden hover:underline underline-offset-4 p-2 ${
               activeLink("/about", pathname) ? "bg-glassTeal text-black" : ""
             }`}
@@ -26,6 +27,7 @@ export default function Nav() {
             About
           </Link>
           <Link
+            scroll={false}
             href={"/contact"}
             className={`sm:inline-block hidden hover:underline underline-offset-4 p-2 ${
               activeLink("/contact", pathname) ? "bg-glassTeal text-black" : ""

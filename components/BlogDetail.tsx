@@ -1,5 +1,4 @@
 import moment from "moment";
-import { useEffect } from "react";
 import { BlogPost, Tag } from "../interfaces/schema";
 
 type Props = {
@@ -7,9 +6,6 @@ type Props = {
 };
 
 export default function BlogDetail({ post }: Props) {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
   return (
     <div className="flex flex-col gap-4 mb-4">
       <div className="flex gap-2">

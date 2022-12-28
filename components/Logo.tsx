@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Link href="/" className="font-bold text-2xl">
+    <Link href="/" scroll={false} className="font-bold text-2xl">
       Oddinary's Blog
     </Link>
   );
