@@ -45,7 +45,7 @@ export default class NotionService {
       filter: {
         property: "Slug",
         formula: {
-          text: {
+          string: {
             equals: slug,
           },
         },
@@ -70,7 +70,6 @@ export default class NotionService {
 
   private static pageToPostTransformer(page: any): BlogPost {
     let cover = page.cover;
-    console.log(cover);
     switch (cover.type) {
       case "file":
         cover = page.cover.file;
