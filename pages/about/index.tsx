@@ -73,37 +73,39 @@ export default function AboutPage({
         <h1 className="text-3xl font-light">Vision</h1>
         <div className="grid gap-5 md:grid-cols-2 grid-cols-1">
           <div>
-            <h1 className="font-light mb-2">Learning and Growing Together</h1>
-            <p className="text-xs dark:opacity-30 font-extralight leading-5 tracking-wide">
+            <h1 className="font-normal mb-2 text-lg">
+              Learning and Growing Together
+            </h1>
+            <p className="text-sm dark:opacity-50 font-extralight leading-5 tracking-wide">
               Creating a community where software developers of all levels can
               come together to learn, share their experiences, and support one
               another in their professional growth.
             </p>
           </div>
           <div>
-            <h1 className="font-light mb-2">
+            <h1 className="font-normal mb-2 text-lg">
               Sharing My Journey with the World
             </h1>
-            <p className="text-xs dark:opacity-30 font-extralight leading-5 tracking-wide">
+            <p className="text-sm dark:opacity-50 font-extralight leading-5 tracking-wide">
               Documenting and sharing the journey of learning and growing as a
               developer, in the hopes of inspiring others to pursue their own
               passions and goals.
             </p>
           </div>
           <div>
-            <h1 className="font-light mb-2">
+            <h1 className="font-normal mb-2 text-lg">
               Small Steps Toward a Better Future
             </h1>
-            <p className="text-xs dark:opacity-30 font-extralight leading-5 tracking-wide">
+            <p className="text-sm dark:opacity-50 font-extralight leading-5 tracking-wide">
               Contributing to the advancement of technology in small but
               meaningful ways, and to inspire others to do the same.
             </p>
           </div>
           <div>
-            <h1 className="font-light mb-2">
+            <h1 className="font-normal text-lg mb-2">
               Building a Stronger Tech Community
             </h1>
-            <p className="text-xs dark:opacity-30 font-extralight leading-5 tracking-wide">
+            <p className="text-sm dark:opacity-50 font-extralight leading-5 tracking-wide">
               Bring together the like-minded individuals who are passionate
               about programming and technology, and to foster a sense of
               collaboration and support within the community.
@@ -116,7 +118,7 @@ export default function AboutPage({
           <Link
             scroll={false}
             href={"/contact"}
-            className="dark:bg-zinc-200 bg-gray-300 hover:dark:bg-transparent hover:bg-transparent py-4 px-8 rounded-full border-2 hover:dark:border-zinc-800 hover:border-gray-300 transition-all duration-300 ease-out"
+            className="dark:bg-zinc-200 bg-gray-300 hover:dark:bg-transparent hover:bg-transparent py-3 px-7 rounded-full border-2 hover:dark:border-zinc-800 hover:border-gray-300 transition-all duration-300 ease-out"
           >
             Get in touch
           </Link>
