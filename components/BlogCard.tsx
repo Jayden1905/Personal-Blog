@@ -13,7 +13,7 @@ export default function BlogCard({ post }: Props) {
       href={`/posts/${post.slug}`}
       scroll={false}
       key={post.id}
-      className="p-2 pb-6 last:mb-10 rounded-2xl border-2 dark:border-white border-zinc-900 dark:border-opacity-10 border-opacity-10 group dark:hover:border-opacity-20 hover:border-opacity-20 transition-all duration-200 ease-out"
+      className="p-2 pb-6 last:mb-12 rounded-2xl border-2 dark:border-white border-zinc-900 dark:border-opacity-10 border-opacity-10 group dark:hover:border-opacity-20 hover:border-opacity-20 transition-all duration-200 ease-out"
     >
       <div className="flex flex-col gap-4 group-hover:opacity-60 transition-all duration-200 ease-out">
         <div className="w-full h-80 rounded-xl overflow-hidden">

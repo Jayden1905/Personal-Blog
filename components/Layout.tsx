@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <motion.div
-      className="max-w-3xl mx-auto"
+      className="max-w-3xl h-full mx-auto"
       variants={pageTransition}
       initial="initial"
       animate="animate"
