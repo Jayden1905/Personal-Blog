@@ -12,6 +12,9 @@ module.exports = {
       colors: {
         glassTeal: "#88ccca",
       },
+      fontFamily: {
+        ibm: ['"IBM Plex Sans"', "sans-serif"],
+      },
     },
   },
   plugins: [],
