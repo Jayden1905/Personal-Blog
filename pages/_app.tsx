@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <div>
+    <>
       <ThemeProvider enableSystem={true} attribute="class">
         <Nav />
         <div className="max-w-5xl relative top-28 mx-auto px-4">
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           </AnimatePresence>
         </div>
       </ThemeProvider>
-    </div>
+    </>
   );
 }
 

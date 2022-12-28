@@ -13,8 +13,8 @@ export default function Nav() {
   };
 
   return (
-    <div className="backdrop-blur-md fixed w-full z-20 py-4 top-0">
-      <div className="max-w-3xl mx-auto flex justify-between items-center px-4">
+    <div className="backdrop-blur-md fixed w-full z-20 py-4 top-0 px-4">
+      <div className="max-w-3xl mx-auto flex justify-between items-center">
         <div className="flex justify-center items-center gap-8">
           <Logo />
           <Link

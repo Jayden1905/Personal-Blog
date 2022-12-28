@@ -7,12 +7,12 @@ export default class NotionService {
   n2m: NotionToMarkdown;
 
   constructor() {
-    this.client = new Client({ auth: `${process.env.NOTION_ACCESS_TOKEN}` });
+    this.client = new Client({ auth: process.env.NOTION_ACCESS_TOKEN });
     this.n2m = new NotionToMarkdown({ notionClient: this.client });
   }
 
   async getPublishedBlogPosts(): Promise<BlogPost[]> {
-    const database = `${process.env.NOTION_BLOG_DATABASE_ID}` ?? "";
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? "";
     // list blog posts
     const response = await this.client.databases.query({
       database_id: database,
@@ -38,7 +38,7 @@ export default class NotionService {
   async getSingleBlogPost(slug: string): Promise<PostPage> {
     let post, markdown;
 
-    const database = `${process.env.NOTION_BLOG_DATABASE_ID}` ?? "";
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? "";
 
     const response = await this.client.databases.query({
       database_id: database,
