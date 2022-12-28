@@ -9,6 +9,8 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { pageTransition } from "../../animation/motion";
+import { useEffect } from "react";
+import BlogDetail from "../../components/BlogDetail";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const notionService = new NotionService();
@@ -70,27 +72,7 @@ const Post = ({
               content={post.description}
             />
           </Head>
-          <div className="flex flex-col gap-4 mb-4">
-            <div className="flex gap-2">
-              {post.tags.map((tag: Tag) => (
-                <div
-                  key={tag.id}
-                  className={`p-2 text-sm dark:bg-zinc-700 bg-gray-300 rounded-md`}
-                >
-                  {tag.name}
-                </div>
-              ))}
-            </div>
-            <h1 className="text-4xl">{post.title}</h1>
-            <p className="text-md mt-auto dark:text-gray-300">
-              {moment(post.date).format("MMMM DD, YYYY")}
-            </p>
-            <img
-              src={post.cover}
-              alt={post.title}
-              className="w-full h-full mt-10 mb-20 rounded-xl"
-            />
-          </div>
+          <BlogDetail post={post} />
 
           <div className="flex flex-col font-light gap-4 mb-10 text-justify">
             <ReactMarkdown>{markdown}</ReactMarkdown>

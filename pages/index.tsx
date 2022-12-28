@@ -39,7 +39,7 @@ const Home: NextPage = ({
         </h1>
         <div className="grid grid-cols-1 gap-10">
           {posts.map((post: BlogPost) => (
-            <BlogCard post={post} />
+            <BlogCard key={post.id} post={post} />
           ))}
         </div>
       </Layout>

@@ -6,9 +6,6 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="mobile-web-app-capable" content="yes" />
           <link
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500;700&display=swap"
             rel="stylesheet"
