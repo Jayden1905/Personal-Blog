@@ -1,6 +1,7 @@
 import moment from "moment";
 import { BlogPost } from "../interfaces/schema";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type Props = {
   post: BlogPost;
@@ -16,10 +17,12 @@ export default function BlogCard({ post }: Props) {
     >
       <div className="flex flex-col gap-4 group-hover:opacity-60 transition-all duration-200 ease-out">
         <div className="w-full h-72 rounded-xl overflow-hidden">
-          <img
+          <motion.img
             src={post.cover}
             alt={post.title}
             className="w-full h-full object-cover block object-center"
+            layout
+            layoutId={post.cover}
           />
         </div>
         <div className="flex gap-2">
@@ -32,7 +35,9 @@ export default function BlogCard({ post }: Props) {
             </div>
           ))}
         </div>
-        <h1 className="text-2xl">{post.title}</h1>
+        <motion.h1 layoutId={post.title} className="text-2xl">
+          {post.title}
+        </motion.h1>
         <p className="dark:text-gray-300">{post.description}</p>
         <p className="text-xs mt-auto dark:text-gray-300">
           {moment(post.date).format("MMM DD, YYYY")}
