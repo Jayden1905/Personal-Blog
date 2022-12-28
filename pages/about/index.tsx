@@ -25,7 +25,7 @@ export default function AboutPage({
   return (
     <Layout>
       <div className="flex flex-col gap-10 mb-10">
-        <h1 className="text-4xl mt-10 text-center tracking-wide font-light">
+        <h1 className="text-4xl text-center tracking-wide font-light">
           Meet Oddinary
         </h1>
         <div className="w-full h-96 rounded-2xl overflow-hidden">
