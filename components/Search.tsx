@@ -42,10 +42,12 @@ export default function Search() {
   };
 
   return (
-    <div className="flex justify-between items-center">
-      <h1 className="font-bold text-xl my-4 underline underline-offset-8 tracking-wider decoration-zinc-400 dark:decoration-zinc-700 decoration-4 mb-10">
-        {searchInput === "" ? "Blog Posts" : "Search Results"}
-      </h1>
+    <div className="flex justify-between items-center mb-10">
+      <div>
+        <h1 className="font-bold text-xl my-4 underline underline-offset-8 tracking-wider decoration-zinc-400 dark:decoration-zinc-700 decoration-4">
+          {searchInput === "" ? "Blog Posts" : "Search Results"}
+        </h1>
+      </div>
       <div
         ref={inputRef}
         className="cursor-pointer flex justify-center items-center relative"
@@ -55,7 +57,7 @@ export default function Search() {
           value={searchInput}
           onChange={(event) => setStore({ searchInput: event.target.value })}
           className={`absolute ${
-            open ? "sm:w-80 w-60 opacity-100" : "w-0 opacity-0"
+            open ? "sm:w-80 w-52 opacity-100" : "w-0 opacity-0"
           } dark:bg-zinc-800 bg-gray-300 right-0 px-4 py-2 outline-none rounded-full transition-all duration-300 ease-out`}
         />
         <BiSearch
