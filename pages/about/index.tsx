@@ -113,12 +113,14 @@ export default function AboutPage({
           </div>
         </div>
         <h1 className="font-light text-3xl">FAQs</h1>
-        <Faqs />
-        <div className="font-light text-md text-black group hover:dark:text-white hover:text-black transition-all duration-300 ease-out">
+        <div className="h-full">
+          <Faqs />
+        </div>
+        <div className="font-light text-md transition-all duration-300 ease-out">
           <Link
             scroll={false}
             href={"/contact"}
-            className="dark:bg-zinc-200 bg-gray-300 hover:dark:bg-transparent hover:bg-transparent py-3 px-7 rounded-full border-2 hover:dark:border-zinc-800 hover:border-gray-300 transition-all duration-300 ease-out"
+            className="dark:bg-zinc-200 bg-gray-300 text-black hover:dark:text-white hover:text-black hover:dark:bg-transparent hover:bg-transparent py-3 px-7 rounded-full border-2 hover:dark:border-zinc-800 hover:border-gray-300 transition-all duration-300 ease-out"
           >
             Get in touch
           </Link>

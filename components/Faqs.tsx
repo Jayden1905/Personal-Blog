@@ -39,11 +39,9 @@ function Item({ content, title }: { content: string; title: string }) {
         <h1 className="text-lg font-light">{title}</h1>
         {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </motion.div>
-      <div>
-        <AnimatePresence>
-          {isOpen && <Content content={content} />}
-        </AnimatePresence>
-      </div>
+      <AnimatePresence>
+        {isOpen && <Content content={content} />}
+      </AnimatePresence>
     </motion.li>
   );
 }
