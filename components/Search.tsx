@@ -10,10 +10,15 @@ export function useOutsideHook(
 ) {
   useEffect(() => {
     function handleClickOutside(event: any) {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (
+        ref.current &&
+        !ref.current.contains(event.target) &&
+        !event.target.classList.contains("blog")
+      ) {
         setOpen(false);
         if (!open) {
-          setTimeout(() => resetFunction(), 500);
+          // setTimeout(() => resetFunction(), 300);
+          resetFunction();
         }
       }
     }
@@ -34,6 +39,10 @@ export default function Search() {
   const resetSearchInput = () => {
     setStore({ searchInput: "" });
   };
+
+  useEffect(() => {
+    resetSearchInput();
+  }, [open]);
 
   useOutsideHook(divRef, setOpen, open, resetSearchInput);
 
