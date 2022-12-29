@@ -13,7 +13,7 @@ function useOutsideHook(
       if (ref.current && !ref.current.contains(event.target)) {
         setOpen(false);
         if (!open) {
-          setTimeout(() => resetFunction(), 1000);
+          setTimeout(() => resetFunction(), 300);
         }
       }
     }
@@ -28,32 +28,38 @@ export default function Search() {
   const { useStore } = useGlobalContext();
   const [searchInput, setStore] = useStore((store) => store.searchInput);
   const [open, setOpen] = useState(false);
+  const divRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const resetSearchInput = () => {
     setStore({ searchInput: "" });
   };
 
-  useOutsideHook(inputRef, setOpen, open, resetSearchInput);
+  useOutsideHook(divRef, setOpen, open, resetSearchInput);
 
   const btnClick = () => {
     setOpen((prev) => !prev);
-    if (open) resetSearchInput();
+    if (open) {
+      resetSearchInput();
+    } else {
+      inputRef.current?.focus();
+    }
   };
 
   return (
     <div className="flex justify-between items-center mb-10">
       <div>
         <h1 className="font-bold text-xl my-4 underline underline-offset-8 tracking-wider decoration-zinc-400 dark:decoration-zinc-700 decoration-4">
-          {searchInput === "" ? "Blog Posts" : "Search Results"}
+          {searchInput === "" ? "Blog Posts" : "Results"}
         </h1>
       </div>
       <div
-        ref={inputRef}
+        ref={divRef}
         className="cursor-pointer flex justify-center items-center relative"
       >
         <input
           type="text"
+          ref={inputRef}
           value={searchInput}
           onChange={(event) => setStore({ searchInput: event.target.value })}
           className={`absolute ${
