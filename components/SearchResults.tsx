@@ -13,12 +13,10 @@ export default function SearchResults({ posts }: Props) {
     post.title.toLowerCase().includes(searchInput.toLowerCase())
   );
 
-  console.log(filterPosts);
-
   return (
     <div className="grid grid-cols-1 gap-10">
       {searchInput !== ""
-        ? filterPosts.map((post) => <BlogCard post={post} />)
+        ? filterPosts.map((post) => <BlogCard key={post.id} post={post} />)
         : ""}
     </div>
   );

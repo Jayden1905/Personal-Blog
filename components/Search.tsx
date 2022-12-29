@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { useGlobalContext } from "./context/ContextProvider";
 
-function useOutsideHook(
+export function useOutsideHook(
   ref: any,
   setOpen: (value: boolean) => void,
   open: boolean,
@@ -13,7 +13,7 @@ function useOutsideHook(
       if (ref.current && !ref.current.contains(event.target)) {
         setOpen(false);
         if (!open) {
-          setTimeout(() => resetFunction(), 300);
+          setTimeout(() => resetFunction(), 500);
         }
       }
     }
@@ -63,7 +63,7 @@ export default function Search() {
           value={searchInput}
           onChange={(event) => setStore({ searchInput: event.target.value })}
           className={`absolute ${
-            open ? "sm:w-80 w-52 opacity-100" : "w-0 opacity-0"
+            open ? "sm:w-80 w-60 opacity-100" : "w-0 opacity-0"
           } dark:bg-zinc-800 bg-gray-300 right-0 px-4 py-2 outline-none rounded-full transition-all duration-300 ease-out`}
         />
         <BiSearch
