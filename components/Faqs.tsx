@@ -5,7 +5,11 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 export default function Faqs() {
   return (
     <AnimateSharedLayout>
-      <motion.ul layout initial={{ borderRadius: 25 }}>
+      <motion.ul
+        layout
+        initial={{ borderRadius: 25 }}
+        className="h-full overflow-visible"
+      >
         <Item
           title="What languages do you work with?"
           content="I have experience working with a variety of programming languages, including Javascript, Typescript and Python. I am always looking to learn and work with new technologies, so this list is always evolving."
