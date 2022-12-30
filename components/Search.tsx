@@ -82,14 +82,16 @@ export default function Search({ posts }: Props) {
             value={searchInput}
             onChange={(event) => setStore({ searchInput: event.target.value })}
             className={`absolute ${
-              open ? "sm:w-80 w-52 opacity-100" : "w-0 opacity-0"
-            } dark:bg-zinc-800 bg-gray-300 right-0 px-4 py-2 outline-none rounded-full transition-all duration-300 ease-out`}
+              open ? "sm:w-80 w-36 opacity-100" : "w-0 opacity-0"
+            } dark:bg-zinc-800 bg-gray-300 right-0 px-4 sm:py-2 py-1 outline-none rounded-full transition-all duration-300 ease-out`}
           />
-          <BiSearch
-            role={"button"}
-            onClick={btnClick}
-            className="text-2xl z-10 mr-3"
-          />
+          {!open && (
+            <BiSearch
+              role={"button"}
+              onClick={btnClick}
+              className="sm:text-2xl text-xl z-10 mr-3 transition-all duration-300 ease-out"
+            />
+          )}
         </div>
         <Categories tags={Array.from(allTags)} />
       </div>

@@ -15,7 +15,7 @@ export default function Categories({ tags }: Props) {
           className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 p-2 text-sm font-medium shadow-sm hover:bg-zinc-300 dark:hover:bg-zinc-800 transition-all"
           aria-label="menu"
         >
-          <BsFilter className="h-5 w-5" />
+          <BsFilter className="sm:h-5 sm:w-5 h-4 w-4" />
         </Menu.Button>
       </div>
 

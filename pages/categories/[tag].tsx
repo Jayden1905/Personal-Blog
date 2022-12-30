@@ -55,7 +55,6 @@ export default function CategoryPage({ posts, slug }: Props): JSX.Element {
       .join(" ");
   }
 
-  console.log(slug, filterCategoriesPosts);
   return (
     <Layout>
       <div className="flex gap-1 items-center mb-10">
