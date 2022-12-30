@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { BlogPost, PostPage } from "../interfaces/schema";
+import { BlogPost, PostPage, Tag } from "../interfaces/schema";
 import { NotionToMarkdown } from "notion-to-md";
 
 export default class NotionService {

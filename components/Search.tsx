@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
+import { BlogPost } from "../interfaces/schema";
+import Categories from "./Categories";
 import { useGlobalContext } from "./context/ContextProvider";
+import DropdownMenu from "./DropdownMenu";
 
 export function useOutsideHook(
   ref: any,
@@ -29,12 +32,18 @@ export function useOutsideHook(
   }, [ref]);
 }
 
-export default function Search() {
+type Props = {
+  posts: BlogPost[];
+};
+
+export default function Search({ posts }: Props) {
   const { useStore } = useGlobalContext();
   const [searchInput, setStore] = useStore((store) => store.searchInput);
   const [open, setOpen] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const allTags = new Set<string>();
+  posts.map((post) => post.tags.map((tag) => allTags.add(tag.name)));
 
   const resetSearchInput = () => {
     setStore({ searchInput: "" });
@@ -62,24 +71,27 @@ export default function Search() {
           {searchInput === "" ? "Blog Posts" : "Results"}
         </h1>
       </div>
-      <div
-        ref={divRef}
-        className="cursor-pointer flex justify-center items-center relative"
-      >
-        <input
-          type="text"
-          ref={inputRef}
-          value={searchInput}
-          onChange={(event) => setStore({ searchInput: event.target.value })}
-          className={`absolute ${
-            open ? "sm:w-80 w-60 opacity-100" : "w-0 opacity-0"
-          } dark:bg-zinc-800 bg-gray-300 right-0 px-4 py-2 outline-none rounded-full transition-all duration-300 ease-out`}
-        />
-        <BiSearch
-          role={"button"}
-          onClick={btnClick}
-          className="text-2xl z-10 mr-3"
-        />
+      <div className="flex gap-4">
+        <div
+          ref={divRef}
+          className="cursor-pointer flex justify-center items-center relative"
+        >
+          <input
+            type="text"
+            ref={inputRef}
+            value={searchInput}
+            onChange={(event) => setStore({ searchInput: event.target.value })}
+            className={`absolute ${
+              open ? "sm:w-80 w-52 opacity-100" : "w-0 opacity-0"
+            } dark:bg-zinc-800 bg-gray-300 right-0 px-4 py-2 outline-none rounded-full transition-all duration-300 ease-out`}
+          />
+          <BiSearch
+            role={"button"}
+            onClick={btnClick}
+            className="text-2xl z-10 mr-3"
+          />
+        </div>
+        <Categories tags={Array.from(allTags)} />
       </div>
     </div>
   );

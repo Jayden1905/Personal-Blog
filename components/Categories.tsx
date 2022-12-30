@@ -1,17 +1,21 @@
 import { Menu, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
-import { IoMenu } from "react-icons/io5/index.js";
+import { BsFilter } from "react-icons/bs";
 import DropdownMenuItem from "./DropdownMenuItem";
 
-export default function DropdownMenu() {
+type Props = {
+  tags: string[];
+};
+
+export default function Categories({ tags }: Props) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
-          className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 p-3 text-sm font-medium shadow-sm hover:bg-zinc-300 dark:hover:bg-zinc-800 transition-all"
+          className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 p-2 text-sm font-medium shadow-sm hover:bg-zinc-300 dark:hover:bg-zinc-800 transition-all"
           aria-label="menu"
         >
-          <IoMenu className="h-5 w-5" />
+          <BsFilter className="h-5 w-5" />
         </Menu.Button>
       </div>
 
@@ -26,9 +30,17 @@ export default function DropdownMenu() {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md border border-zinc-400 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none divide-zinc-400 dark:divide-zinc-700">
           <div className="py-1">
-            <DropdownMenuItem href={`/`}>Home</DropdownMenuItem>
-            <DropdownMenuItem href={`/about`}>About</DropdownMenuItem>
-            <DropdownMenuItem href={`/contact`}>Contact</DropdownMenuItem>
+            <div className="px-3 py-2 text-sm uppercase font-bold">
+              Categories
+            </div>
+            {tags.map((tag) => (
+              <DropdownMenuItem
+                key={tag}
+                href={`/categories/${tag.toLowerCase()}`}
+              >
+                {tag}
+              </DropdownMenuItem>
+            ))}
           </div>
         </Menu.Items>
       </Transition>

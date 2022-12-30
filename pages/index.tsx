@@ -35,7 +35,7 @@ const Home: NextPage = ({
         />
       </Head>
       <Layout>
-        <Search />
+        <Search posts={posts} />
         <BlogWrapper posts={posts} />
         <div>
           <h1 className="font-bold text-xl mb-10 underline underline-offset-8 tracking-wider decoration-zinc-400 dark:decoration-zinc-700 decoration-4">

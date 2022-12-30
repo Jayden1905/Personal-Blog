@@ -2,14 +2,12 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 import NotionService from "../../services/service";
-import { BlogPost, Tag } from "../../interfaces/schema";
+import { BlogPost } from "../../interfaces/schema";
 import Layout from "../../components/Layout";
-import moment from "moment";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { pageTransition } from "../../animation/motion";
-import { useEffect } from "react";
 import BlogDetail from "../../components/BlogDetail";
 
 export const getStaticProps: GetStaticProps = async (context) => {
