@@ -89,7 +89,7 @@ export default function Search({ posts }: Props) {
             <BiSearch
               role={"button"}
               onClick={btnClick}
-              className="sm:text-2xl text-xl z-10 mr-3 transition-all duration-300 ease-out"
+              className="text-2xl z-10 mr-3 transition-all duration-300 ease-out"
             />
           )}
         </div>
