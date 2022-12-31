@@ -8,10 +8,11 @@ export default function DropdownMenu() {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
+          name="menu-button"
           className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 p-3 text-sm font-medium shadow-sm hover:bg-zinc-300 dark:hover:bg-zinc-800 transition-all"
           aria-label="menu"
         >
-          <IoMenu className="h-5 w-5" />
+          <IoMenu name="hamburger-menu" className="h-5 w-5" />
         </Menu.Button>
       </div>
 

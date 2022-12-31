@@ -20,19 +20,23 @@ const ThemeToggleButton = () => {
     if (currentTheme === "dark") {
       return (
         <button
+          aria-label="theme-toggle-button-light"
+          name="light-mode"
           className="rounded-md p-3 font-extrabold text-lg bg-orange-200 hover:bg-orange-300 text-black transition-all duration-200 ease-out"
           onClick={() => setTheme("light")}
         >
-          <FiSun className="w-5 h-5" role="button" />
+          <FiSun name="sun" className="w-5 h-5" role="button" />
         </button>
       );
     } else {
       return (
         <button
+          aria-label="theme-toggle-button-dark"
+          name="dark-mode"
           className="rounded-md p-3 font-extrabold text-lg bg-violet-600 hover:bg-violet-700 text-white transition-all duration-200 ease-out"
           onClick={() => setTheme("dark")}
         >
-          <RiMoonFill className="w-5 h-5" role="button" />
+          <RiMoonFill name="moon" className="w-5 h-5" role="button" />
         </button>
       );
     }

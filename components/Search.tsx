@@ -19,7 +19,6 @@ export function useOutsideHook(
       ) {
         setOpen(false);
         if (!open) {
-          // setTimeout(() => resetFunction(), 300);
           resetFunction();
         }
       }
@@ -87,6 +86,7 @@ export default function Search({ posts }: Props) {
           {!open && (
             <BiSearch
               role={"button"}
+              name="search"
               onClick={btnClick}
               className="absolute text-2xl z-10 transition-all duration-300 ease-out"
             />

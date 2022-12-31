@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { BlogPost, PostPage, Tag } from "../interfaces/schema";
+import { BlogPost, PostPage } from "../interfaces/schema";
 import { NotionToMarkdown } from "notion-to-md";
 
 export default class NotionService {
@@ -13,7 +13,6 @@ export default class NotionService {
 
   async getPublishedBlogPosts(): Promise<BlogPost[]> {
     const database = process.env.NOTION_BLOG_DATABASE_ID ?? "";
-    // list blog posts
     const response = await this.client.databases.query({
       database_id: database,
       filter: {
@@ -78,7 +77,6 @@ export default class NotionService {
         cover = page.cover.external.url;
         break;
       default:
-        // Add default cover image if you want...
         cover = "";
     }
 
