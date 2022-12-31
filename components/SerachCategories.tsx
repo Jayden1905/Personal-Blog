@@ -24,7 +24,7 @@ export default function SearchCategories({ posts, slug }: Props) {
       state.options.scroll = false;
       return true;
     });
-  });
+  }, []);
 
   const divRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);

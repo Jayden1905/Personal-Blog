@@ -63,7 +63,7 @@ const Post = ({
       state.options.scroll = false;
       return true;
     });
-  });
+  }, []);
 
   return (
     <motion.div
