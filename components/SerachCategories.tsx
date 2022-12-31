@@ -20,7 +20,7 @@ export default function SearchCategories({ posts, slug }: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    router?.beforePopState((state) => {
+    router.beforePopState((state) => {
       state.options.scroll = false;
       return true;
     });

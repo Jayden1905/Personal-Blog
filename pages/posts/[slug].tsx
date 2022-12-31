@@ -59,7 +59,7 @@ const Post = ({
   const router = useRouter();
 
   useEffect(() => {
-    router?.beforePopState((state) => {
+    router.beforePopState((state) => {
       state.options.scroll = false;
       return true;
     });

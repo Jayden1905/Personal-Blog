@@ -6,6 +6,10 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import ContextProvider from "../components/context/ContextProvider";
 
+if (typeof window !== "undefined") {
+  window.history.scrollRestoration = "manual";
+}
+
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
@@ -13,7 +17,15 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <ThemeProvider enableSystem={true} attribute="class">
           <Nav />
           <div className="max-w-5xl h-full mt-28 mx-auto px-4">
-            <AnimatePresence mode="wait" initial={true}>
+            <AnimatePresence
+              mode="wait"
+              initial={true}
+              onExitComplete={() => {
+                if (typeof window !== "undefined") {
+                  window.scrollTo({ top: 0 });
+                }
+              }}
+            >
               <Component {...pageProps} key={router.route} />
             </AnimatePresence>
           </div>
