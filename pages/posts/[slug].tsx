@@ -1,4 +1,9 @@
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+  PreviewData,
+} from "next";
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 import NotionService from "../../services/service";
@@ -9,11 +14,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { pageTransition } from "../../animation/motion";
 import BlogDetail from "../../components/BlogDetail";
+import { ParsedUrlQuery } from "querystring";
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext<ParsedUrlQuery, PreviewData> | any
+) => {
   const notionService = new NotionService();
 
-  // @ts-ignore
   const p = await notionService.getSingleBlogPost(context.params?.slug);
 
   if (!p) {
@@ -54,9 +61,9 @@ const Post = ({
       initial="initial"
       animate="animate"
       exit="exit"
-      className="pb-6 max-w-5xl"
+      className="max-w-5xl pb-6"
     >
-      <Link href={".."} className="flex gap-2 items-center">
+      <Link href={".."} className="flex items-center gap-2">
         <IoMdArrowRoundBack className="text-xl" role="button" />
         <span>Back</span>
       </Link>
@@ -72,7 +79,7 @@ const Post = ({
           </Head>
           <BlogDetail post={post} />
 
-          <div className="flex flex-col font-light gap-4 mb-10 text-justify">
+          <div className="mb-10 flex flex-col gap-4 text-justify font-light">
             <ReactMarkdown>{markdown}</ReactMarkdown>
           </div>
         </Layout>
