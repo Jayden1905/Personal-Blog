@@ -4,6 +4,7 @@ import Link from "next/link";
 import Faqs from "../../components/Faqs";
 import Layout from "../../components/Layout";
 import NotionService from "../../services/service";
+import profilePic from "../../public/me.png";
 
 export const getStaticProps: GetStaticProps = async () => {
   const notionService = new NotionService();
@@ -28,13 +29,14 @@ export default function AboutPage({
         <h1 className="text-4xl text-center tracking-wide font-light">
           Meet Oddinary
         </h1>
-        <div className="w-full h-96 rounded-2xl overflow-hidden">
+        <div className="w-full h-96 rounded-2xl relative overflow-hidden">
           <Image
             className="w-full h-full object-cover object-center block"
-            src={"/me.png"}
-            alt="img"
-            width={1000}
-            height={10}
+            src={profilePic}
+            alt="profile image"
+            fill
+            priority
+            placeholder={"blur"}
           />
         </div>
         <h1 className="text-2xl tracking-wide font-light">
