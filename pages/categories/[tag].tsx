@@ -1,10 +1,7 @@
 import { GetStaticProps } from "next";
-import { IoIosArrowForward } from "react-icons/io";
-import BlogCard from "../../components/BlogCard";
 import Layout from "../../components/Layout";
 import { BlogPost } from "../../interfaces/schema";
 import NotionService from "../../services/service";
-import Link from "next/link";
 import SearchCategories from "../../components/SerachCategories";
 import BlogWrapper from "../../components/BlogWrapper";
 
