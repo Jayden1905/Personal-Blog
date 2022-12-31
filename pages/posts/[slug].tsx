@@ -11,11 +11,11 @@ import { BlogPost } from "../../interfaces/schema";
 import Layout from "../../components/Layout";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { pageTransition } from "../../animation/motion";
 import BlogDetail from "../../components/BlogDetail";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext<ParsedUrlQuery, PreviewData> | any
@@ -57,6 +57,13 @@ const Post = ({
   post,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
+
+  useEffect(() => {
+    router?.beforePopState((state) => {
+      state.options.scroll = false;
+      return true;
+    });
+  });
 
   return (
     <motion.div

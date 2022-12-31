@@ -1,10 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BlogPost } from "../interfaces/schema";
-import Categories from "./Categories";
 import { useGlobalContext } from "./context/ContextProvider";
 import { useOutsideHook } from "./Search";
-import Link from "next/link";
 import { capitalize } from "../pages/categories/[tag]";
 import { IoIosArrowForward } from "react-icons/io";
 import { useRouter } from "next/router";
@@ -20,6 +18,13 @@ export default function SearchCategories({ posts, slug }: Props) {
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    router?.beforePopState((state) => {
+      state.options.scroll = false;
+      return true;
+    });
+  });
 
   const divRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
