@@ -82,7 +82,7 @@ export default function Search({ posts }: Props) {
             value={searchInput}
             onChange={(event) => setStore({ searchInput: event.target.value })}
             className={`${
-              open ? "sm:w-80 max-w-2xl opacity-100" : "w-0 opacity-0"
+              open ? "sm:w-80 w-32 opacity-100" : "w-0 opacity-0"
             } dark:bg-zinc-800 bg-gray-300 right-0 px-4 sm:py-2 py-1 outline-none rounded-full transition-all duration-300 ease-out`}
           />
           {!open && (
