@@ -14,15 +14,16 @@ else
   set shortmess=aoO
 endif
 badd +38 ~/Documents/Dev_Projects/blog/pages/index.tsx
-badd +92 components/Search.tsx
-badd +18 components/Categories.tsx
-badd +69 pages/categories/\[tag].tsx
+badd +84 components/Search.tsx
+badd +1 components/Categories.tsx
+badd +70 pages/categories/\[tag].tsx
+badd +39 pages/about/index.tsx
 argglobal
 %argdel
 $argadd pages/about/index.tsx
-edit components/Search.tsx
+edit pages/categories/\[tag].tsx
 argglobal
-balt components/Categories.tsx
+balt pages/about/index.tsx
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -33,12 +34,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 86 - ((16 * winheight(0) + 16) / 33)
+let s:l = 70 - ((23 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 86
-normal! 026|
+keepjumps 70
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

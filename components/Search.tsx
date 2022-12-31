@@ -3,7 +3,6 @@ import { BiSearch } from "react-icons/bi";
 import { BlogPost } from "../interfaces/schema";
 import Categories from "./Categories";
 import { useGlobalContext } from "./context/ContextProvider";
-import DropdownMenu from "./DropdownMenu";
 
 export function useOutsideHook(
   ref: any,

@@ -1,6 +1,7 @@
 import moment from "moment";
 import { BlogPost, Tag } from "../interfaces/schema";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type Props = {
   post: BlogPost;
@@ -23,10 +24,15 @@ export default function BlogDetail({ post }: Props) {
       <p className="text-md mt-auto dark:text-gray-300">
         {moment(post.date).format("MMMM DD, YYYY")}
       </p>
-      <motion.img
+      <Image
         src={post.cover}
         alt={post.title}
         className="w-full h-full mt-10 mb-20 rounded-xl"
+        width={1000}
+        height={1000}
+        placeholder="blur"
+        blurDataURL={post.cover}
+        priority={true}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import { IoMdArrowRoundBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import BlogCard from "../../components/BlogCard";
 import Layout from "../../components/Layout";
 import { BlogPost } from "../../interfaces/schema";

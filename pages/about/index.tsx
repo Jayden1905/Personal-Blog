@@ -35,7 +35,7 @@ export default function AboutPage({
             src={profilePic}
             alt="profile image"
             fill
-            priority
+            priority={true}
             placeholder={"blur"}
           />
         </div>
