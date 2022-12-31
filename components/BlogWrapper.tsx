@@ -10,6 +10,11 @@ type Props = {
 export default function BlogWrapper({ posts }: Props) {
   const { useStore } = useGlobalContext();
   const [searchInput] = useStore((store) => store.searchInput);
+
+  const filterPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <>
       {searchInput === "" ? (
@@ -19,7 +24,7 @@ export default function BlogWrapper({ posts }: Props) {
           ))}
         </div>
       ) : (
-        <SearchResults posts={posts} />
+        <SearchResults posts={filterPosts} />
       )}
     </>
   );

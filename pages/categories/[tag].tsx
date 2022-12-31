@@ -5,6 +5,8 @@ import Layout from "../../components/Layout";
 import { BlogPost } from "../../interfaces/schema";
 import NotionService from "../../services/service";
 import Link from "next/link";
+import SearchCategories from "../../components/SerachCategories";
+import BlogWrapper from "../../components/BlogWrapper";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const notionService = new NotionService();
@@ -43,37 +45,22 @@ type Props = {
   slug: string;
 };
 
+export function capitalize(str: string) {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 export default function CategoryPage({ posts, slug }: Props): JSX.Element {
   const filterCategoriesPosts = posts.filter((post) =>
     post.tags.some((tag) => tag.name.toLowerCase() === slug.toLowerCase())
   );
 
-  function capitalize(str: string) {
-    return str
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  }
-
   return (
     <Layout>
-      <div className="flex gap-1 items-center mb-10">
-        <Link
-          href={".."}
-          className="underline underline-offset-4 font-extralight"
-        >
-          Index
-        </Link>
-        <IoIosArrowForward className="text-xl font-extralight opacity-50" />
-        <span className="font-extrabold text-orange-500">
-          {capitalize(slug)}
-        </span>
-      </div>
-      <div className="grid grid-cols-1 gap-10">
-        {filterCategoriesPosts.map((post) => (
-          <BlogCard key={post.id} post={post} />
-        ))}
-      </div>
+      <SearchCategories posts={filterCategoriesPosts} slug={slug} />
+      <BlogWrapper posts={filterCategoriesPosts} />
     </Layout>
   );
 }

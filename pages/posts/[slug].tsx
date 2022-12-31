@@ -15,6 +15,7 @@ import Link from "next/link";
 import { pageTransition } from "../../animation/motion";
 import BlogDetail from "../../components/BlogDetail";
 import { ParsedUrlQuery } from "querystring";
+import { useRouter } from "next/router";
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext<ParsedUrlQuery, PreviewData> | any
@@ -55,6 +56,8 @@ const Post = ({
   markdown,
   post,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const router = useRouter();
+
   return (
     <motion.div
       variants={pageTransition}
@@ -63,10 +66,13 @@ const Post = ({
       exit="exit"
       className="max-w-5xl pb-6"
     >
-      <Link href={".."} className="flex items-center gap-2">
+      <div
+        onClick={() => router.back()}
+        className="cursor-pointer flex items-center gap-2"
+      >
         <IoMdArrowRoundBack className="text-xl" role="button" />
         <span>Back</span>
-      </Link>
+      </div>
       <div className="mt-10">
         <Layout>
           <Head>
