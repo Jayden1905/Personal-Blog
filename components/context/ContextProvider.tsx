@@ -20,6 +20,7 @@ type ContextProps = {
 };
 
 const GlobalState = createContext({} as ContextProps);
+
 export function useGlobalContext() {
   return useContext(GlobalState);
 }

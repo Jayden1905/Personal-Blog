@@ -19,6 +19,8 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+const today = new Date();
+
 export default function AboutPage({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
@@ -38,7 +40,7 @@ export default function AboutPage({
             sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-            priority={true}
+            priority
             placeholder={"blur"}
           />
         </div>
