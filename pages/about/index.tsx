@@ -5,7 +5,7 @@ import Faqs from "../../components/Faqs";
 import Layout from "../../components/Layout";
 import NotionService from "../../services/service";
 import profilePic from "../../public/me.png";
-import { getCurrentYear } from "../../components/Footer";
+import { getExperience } from "../../services/util";
 
 export const getStaticProps: GetStaticProps = async () => {
   const notionService = new NotionService();
@@ -18,11 +18,6 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     revalidate: 30,
   };
-};
-
-export const getExperience = () => {
-  const currYear = getCurrentYear();
-  return currYear - 2020;
 };
 
 export default function AboutPage({
@@ -58,11 +53,11 @@ export default function AboutPage({
         <p className="text-justify text-lg font-light">
           Hi there! My name is Kyaw Za Yan Naing and I am a web developer with a
           passion for creating and problem-solving. I have been programming for
-          {experience} years and have experience working with languages such as
-          javascript, typescript and python. I am excited to share my knowledge
-          and experiences with the community through this blog, and I hope to
-          inspire and empower others to pursue a career in tech. Thank you for
-          joining me on this journey!
+          {" " + experience} years and have experience working with languages
+          such as javascript, typescript and python. I am excited to share my
+          knowledge and experiences with the community through this blog, and I
+          hope to inspire and empower others to pursue a career in tech. Thank
+          you for joining me on this journey!
         </p>
         <div className="my-10 flex flex-col items-center justify-center gap-10 md:flex-row md:gap-20">
           <div className="text-center">
