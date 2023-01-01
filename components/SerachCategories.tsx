@@ -56,7 +56,7 @@ export default function SearchCategories({ posts, slug }: Props) {
       <div className="flex gap-1 justify-center items-center">
         <div
           onClick={() => router.back()}
-          className="cursor-pointer underline underline-offset-4 font-extralight"
+          className="cursor-pointer underline underline-offset-4 font-normal"
         >
           Index
         </div>
