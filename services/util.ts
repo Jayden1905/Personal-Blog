@@ -4,6 +4,6 @@ export const getCurrentYear = () => {
 };
 
 export const getExperience = () => {
-  const currentYear = getCurrentYear();
-  return currentYear - 2020;
+  const today = new Date();
+  return today.getFullYear() - 2020;
 };

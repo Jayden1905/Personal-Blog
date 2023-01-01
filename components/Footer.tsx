@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { getCurrentYear } from "../services/util";
 
+const currYear = getCurrentYear();
+
 export default function Footer() {
-  const currYear = getCurrentYear();
   return (
     <div className="w-full h-full">
       <footer className="text-zinc-500 p-4 text-center mx-auto">

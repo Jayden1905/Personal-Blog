@@ -20,12 +20,12 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+const experience = getExperience();
+
 export default function AboutPage({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const numberOfPosts = posts?.length;
-
-  const experience = getExperience();
 
   return (
     <Layout>
