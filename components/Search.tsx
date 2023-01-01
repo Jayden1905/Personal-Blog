@@ -63,16 +63,16 @@ export default function Search({ posts }: Props) {
   };
 
   return (
-    <div className="flex justify-between gap-4 items-center mb-10">
+    <div className="mb-10 flex items-center justify-between gap-4">
       <div>
-        <h1 className="font-bold text-xl my-4 underline underline-offset-8 tracking-wider decoration-zinc-400 dark:decoration-zinc-700 decoration-4">
+        <h1 className="my-4 text-xl font-bold tracking-wider underline decoration-zinc-400 decoration-4 underline-offset-8 dark:decoration-zinc-700">
           {searchInput === "" ? "Blog Posts" : "Results"}
         </h1>
       </div>
       <div className="flex gap-4">
         <div
           ref={divRef}
-          className="cursor-pointer flex justify-center items-center relative"
+          className="relative flex cursor-pointer items-center justify-center"
         >
           <input
             type="text"
@@ -80,15 +80,15 @@ export default function Search({ posts }: Props) {
             value={searchInput}
             onChange={(event) => setStore({ searchInput: event.target.value })}
             className={`${
-              open ? "sm:w-80 w-32 opacity-100" : "w-0 opacity-0"
-            } dark:bg-zinc-800 bg-gray-300 right-0 px-4 sm:py-2 py-1 outline-none rounded-full transition-all duration-300 ease-out`}
+              open ? "w-32 opacity-100 sm:w-80" : "w-0 opacity-0"
+            } right-0 rounded-full bg-gray-300 px-4 py-1 outline-none transition-all duration-300 ease-out dark:bg-zinc-800 sm:py-2`}
           />
           {!open && (
             <BiSearch
               role={"button"}
               name="search"
               onClick={btnClick}
-              className="absolute text-2xl z-10 transition-all duration-300 ease-out"
+              className="absolute z-10 text-2xl transition-all duration-300 ease-out"
             />
           )}
         </div>

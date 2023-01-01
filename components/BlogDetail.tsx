@@ -9,12 +9,12 @@ type Props = {
 
 export default function BlogDetail({ post }: Props) {
   return (
-    <div className="flex flex-col gap-4 mb-4">
+    <div className="mb-4 flex flex-col gap-4">
       <div className="flex gap-2">
         {post.tags.map((tag: Tag) => (
           <div
             key={tag.id}
-            className={`p-2 text-sm dark:bg-zinc-700 bg-gray-300 rounded-md`}
+            className={`rounded-md bg-gray-300 p-2 text-sm dark:bg-zinc-700`}
           >
             {tag.name}
           </div>
@@ -27,7 +27,7 @@ export default function BlogDetail({ post }: Props) {
       <Image
         src={post.cover}
         alt={post.title}
-        className="w-full h-full mt-10 mb-20 rounded-xl"
+        className="mt-10 mb-20 aspect-auto h-full w-full rounded-xl"
         width={1000}
         height={1000}
         placeholder="blur"
