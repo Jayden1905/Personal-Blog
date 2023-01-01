@@ -19,12 +19,17 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const today = new Date();
-
 export default function AboutPage({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const numberOfPosts = posts?.length;
+
+  const today = new Date();
+  const calcExperience = (startingYear: number, currentYear: number) => {
+    return currentYear - startingYear;
+  };
+  const experience = calcExperience(2020, today.getFullYear());
+
   return (
     <Layout>
       <div className="mb-10 flex flex-col gap-10">
@@ -51,15 +56,15 @@ export default function AboutPage({
         <p className="text-justify text-lg font-light">
           Hi there! My name is Kyaw Za Yan Naing and I am a web developer with a
           passion for creating and problem-solving. I have been programming for
-          3 years and have experience working with languages such as javascript,
-          typescript and python. I am excited to share my knowledge and
-          experiences with the community through this blog, and I hope to
+          {experience} years and have experience working with languages such as
+          javascript, typescript and python. I am excited to share my knowledge
+          and experiences with the community through this blog, and I hope to
           inspire and empower others to pursue a career in tech. Thank you for
           joining me on this journey!
         </p>
         <div className="my-10 flex flex-col items-center justify-center gap-10 md:flex-row md:gap-20">
           <div className="text-center">
-            <h1 className="mb-4 text-7xl font-light">3</h1>
+            <h1 className="mb-4 text-7xl font-light">{experience}</h1>
             <p className="text-sm font-extralight dark:opacity-40">
               Years into web-dev
             </p>
