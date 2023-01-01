@@ -29,7 +29,7 @@ export default function BlogCard({post}: Props) {
             className='blog block aspect-auto h-full w-full object-cover object-center'
             placeholder='blur'
             blurDataURL={post.cover}
-            priority
+            priority={true}
           />
         </div>
         <div className='blog flex flex-wrap gap-2'>

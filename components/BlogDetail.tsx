@@ -33,7 +33,7 @@ export default function BlogDetail({post}: Props) {
         height={1000}
         placeholder='blur'
         blurDataURL={post.cover}
-        priority
+        priority={true}
       />
     </div>
   );

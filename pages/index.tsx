@@ -57,7 +57,7 @@ const Home: NextPage = ({
                       33vw'
                     placeholder='blur'
                     blurDataURL='https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png'
-                    priority
+                    priority={true}
                   />
                 </div>
                 <h1 className='text-xl font-normal'>Next Js</h1>
@@ -79,7 +79,7 @@ const Home: NextPage = ({
                       33vw'
                     placeholder='blur'
                     blurDataURL='https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png'
-                    priority
+                    priority={true}
                   />
                 </div>
                 <h1 className='text-xl font-normal'>Notion</h1>
