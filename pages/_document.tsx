@@ -1,31 +1,31 @@
-import React from 'react';
+import React from 'react'
 import Document, {
   Html,
   Head,
   Main,
   NextScript,
   DocumentContext,
-  DocumentInitialProps,
-} from 'next/document';
+  DocumentInitialProps
+} from 'next/document'
 
 class MyDocument extends Document {
-  static async getInitialProps(
-      ctx: DocumentContext,
+  static async getInitialProps (
+    ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
-    const originalRenderPage = ctx.renderPage;
+    const originalRenderPage = ctx.renderPage
 
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => App,
-        enhanceComponent: (Component) => Component,
-      });
+        enhanceComponent: (Component) => Component
+      })
 
-    const initialProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx)
 
-    return initialProps;
+    return initialProps
   }
 
-  render() {
+  render () {
     return (
       <Html>
         <Head>
@@ -41,8 +41,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument;
+export default MyDocument

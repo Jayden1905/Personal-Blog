@@ -1,32 +1,32 @@
-import React from 'react';
-import {GetStaticProps, InferGetStaticPropsType} from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import Faqs from '../../components/Faqs';
-import Layout from '../../components/Layout';
-import NotionService from '../../services/service';
-import profilePic from '../../public/me.png';
-import {getExperience} from '../../services/util';
+import React from 'react'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import Faqs from '../../components/Faqs'
+import Layout from '../../components/Layout'
+import NotionService from '../../services/service'
+import profilePic from '../../public/me.png'
+import { getExperience } from '../../services/util'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notionService = new NotionService();
+  const notionService = new NotionService()
 
-  const posts = await notionService.getPublishedBlogPosts();
+  const posts = await notionService.getPublishedBlogPosts()
 
   return {
     props: {
-      posts,
+      posts
     },
-    revalidate: 30,
-  };
-};
+    revalidate: 30
+  }
+}
 
-const experience = getExperience();
+const experience = getExperience()
 
-export default function AboutPage({
-  posts,
-}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
-  const numberOfPosts = posts?.length;
+export default function AboutPage ({
+  posts
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const numberOfPosts = posts?.length
 
   return (
     <Layout>
@@ -137,5 +137,5 @@ export default function AboutPage({
         </div>
       </div>
     </Layout>
-  );
+  )
 }

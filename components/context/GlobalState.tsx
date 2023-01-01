@@ -3,69 +3,69 @@ import React, {
   createContext,
   useContext,
   useCallback,
-  useSyncExternalStore,
-} from 'react';
+  useSyncExternalStore
+} from 'react'
 
-export default function GlobalContext<Store>(initialState: Store) {
-  function useStoreData(): {
+export default function GlobalContext<Store> (initialState: Store) {
+  function useStoreData (): {
     get: () => Store;
     set: (value: Partial<Store>) => void;
     subscribe: (callback: () => void) => () => void;
     } {
-    const store = useRef(initialState);
+    const store = useRef(initialState)
 
-    const get = useCallback(() => store.current, []);
+    const get = useCallback(() => store.current, [])
 
-    const subscribers = useRef(new Set<() => void>());
+    const subscribers = useRef(new Set<() => void>())
 
     const set = useCallback((value: Partial<Store>) => {
-      store.current = {...store.current, ...value};
-      subscribers.current.forEach((callback) => callback());
-    }, []);
+      store.current = { ...store.current, ...value }
+      subscribers.current.forEach((callback) => callback())
+    }, [])
 
     const subscribe = useCallback((callback: () => void) => {
-      subscribers.current.add(callback);
-      return () => subscribers.current.delete(callback);
-    }, []);
+      subscribers.current.add(callback)
+      return () => subscribers.current.delete(callback)
+    }, [])
 
     return {
       get,
       set,
-      subscribe,
-    };
+      subscribe
+    }
   }
 
   type UseStoreDataReturnType = ReturnType<typeof useStoreData>;
 
-  const StoreContext = createContext<UseStoreDataReturnType | null>(null);
+  const StoreContext = createContext<UseStoreDataReturnType | null>(null)
 
-  function Provider({children}: { children: React.ReactNode }) {
+  function Provider ({ children }: { children: React.ReactNode }) {
     return (
       <StoreContext.Provider value={useStoreData()}>
         {children}
       </StoreContext.Provider>
-    );
+    )
   }
 
-  function useStore<SelectorOutput>(
-      selector: (store: Store) => SelectorOutput,
+  function useStore<SelectorOutput> (
+    selector: (store: Store) => SelectorOutput
   ): [SelectorOutput, (value: Partial<Store>) => void] {
-    const store = useContext(StoreContext);
+    const store = useContext(StoreContext)
     if (!store) {
-      throw new Error('Store not found');
+      throw new Error('Store not found')
     }
 
     const state = useSyncExternalStore(
-        store.subscribe,
-        () => selector(store.get()),
-        () => selector(initialState),
-    );
+      store.subscribe,
+      () => selector(store.get()),
+      () => selector(initialState)
+    )
 
-    return [state, store.set];
+    return [state, store.set]
   }
 
   return {
     Provider,
-    useStore,
-  };
+    useStore
+  }
 }

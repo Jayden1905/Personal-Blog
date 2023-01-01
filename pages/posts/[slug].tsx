@@ -1,69 +1,69 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react'
 import {
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
-  PreviewData,
-} from 'next';
-import ReactMarkdown from 'react-markdown';
-import Head from 'next/head';
-import NotionService from '../../services/service';
-import {BlogPost} from '../../interfaces/schema';
-import Layout from '../../components/Layout';
-import {IoMdArrowRoundBack} from 'react-icons/io';
-import {motion} from 'framer-motion';
-import {pageTransition} from '../../animation/motion';
-import BlogDetail from '../../components/BlogDetail';
-import {ParsedUrlQuery} from 'querystring';
-import {useRouter} from 'next/router';
+  PreviewData
+} from 'next'
+import ReactMarkdown from 'react-markdown'
+import Head from 'next/head'
+import NotionService from '../../services/service'
+import { BlogPost } from '../../interfaces/schema'
+import Layout from '../../components/Layout'
+import { IoMdArrowRoundBack } from 'react-icons/io'
+import { motion } from 'framer-motion'
+import { pageTransition } from '../../animation/motion'
+import BlogDetail from '../../components/BlogDetail'
+import { ParsedUrlQuery } from 'querystring'
+import { useRouter } from 'next/router'
 
 export const getStaticProps: GetStaticProps = async (
-    context: GetStaticPropsContext<ParsedUrlQuery, PreviewData> | any,
+  context: GetStaticPropsContext<ParsedUrlQuery, PreviewData> | any
 ) => {
-  const notionService = new NotionService();
+  const notionService = new NotionService()
 
-  const p = await notionService.getSingleBlogPost(context.params?.slug);
+  const p = await notionService.getSingleBlogPost(context.params?.slug)
 
   if (!p) {
-    throw new Error();
+    throw new Error()
   }
 
   return {
     props: {
       markdown: p.markdown,
-      post: p.post,
+      post: p.post
     },
-    revalidate: 30,
-  };
-};
+    revalidate: 30
+  }
+}
 
-export async function getStaticPaths() {
-  const notionService = new NotionService();
+export async function getStaticPaths () {
+  const notionService = new NotionService()
 
-  const posts = await notionService.getPublishedBlogPosts();
+  const posts = await notionService.getPublishedBlogPosts()
 
   const paths = posts.map((post: BlogPost) => {
-    return `/posts/${post.slug}`;
-  });
+    return `/posts/${post.slug}`
+  })
 
   return {
     paths,
-    fallback: false,
-  };
+    fallback: false
+  }
 }
 
 const Post = ({
   markdown,
-  post,
+  post
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
     router.beforePopState((state) => {
-      state.options.scroll = false;
-      return true;
-    });
-  }, []);
+      state.options.scroll = false
+      return true
+    })
+  }, [])
 
   return (
     <motion.div
@@ -98,7 +98,7 @@ const Post = ({
         </Layout>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

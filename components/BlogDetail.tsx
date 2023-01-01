@@ -1,21 +1,21 @@
-import React from 'react';
-import moment from 'moment';
-import {BlogPost, Tag} from '../interfaces/schema';
-import {motion} from 'framer-motion';
-import Image from 'next/image';
+import React from 'react'
+import moment from 'moment'
+import { BlogPost, Tag } from '../interfaces/schema'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 type Props = {
-  post: BlogPost;
-};
+  post: BlogPost
+}
 
-export default function BlogDetail({post}: Props) {
+export default function BlogDetail ({ post }: Props) {
   return (
     <div className='mb-4 flex flex-col gap-4'>
       <div className='flex gap-2'>
         {post.tags.map((tag: Tag) => (
           <div
             key={tag.id}
-            className={`rounded-md bg-gray-300 p-2 text-sm dark:bg-zinc-700`}
+            className={'rounded-md bg-gray-300 p-2 text-sm dark:bg-zinc-700'}
           >
             {tag.name}
           </div>
@@ -36,5 +36,5 @@ export default function BlogDetail({post}: Props) {
         priority={true}
       />
     </div>
-  );
+  )
 }

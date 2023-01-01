@@ -1,14 +1,13 @@
-import React from 'react';
-import {useState} from 'react';
-import {motion, AnimateSharedLayout, AnimatePresence} from 'framer-motion';
-import {IoIosArrowUp, IoIosArrowDown} from 'react-icons/io';
+import React, { useState } from 'react'
+import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
-export default function Faqs() {
+export default function Faqs () {
   return (
     <AnimateSharedLayout>
       <motion.ul
         layout
-        initial={{borderRadius: 25}}
+        initial={{ borderRadius: 25 }}
         className='h-full overflow-visible'
       >
         <Item
@@ -25,20 +24,20 @@ export default function Faqs() {
         />
       </motion.ul>
     </AnimateSharedLayout>
-  );
+  )
 }
 
-function Item({content, title}: { content: string; title: string }) {
-  const [isOpen, setIsOpen] = useState(false);
+function Item ({ content, title }: { content: string; title: string }) {
+  const [isOpen, setIsOpen] = useState(false)
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const toggleOpen = () => setIsOpen(!isOpen)
 
   return (
     <motion.li
       layout
       className='mb-4 last:mb-0 p-4 cursor-pointer border-2 dark:border-zinc-800 border-gray-300'
       onClick={toggleOpen}
-      initial={{borderRadius: 10}}
+      initial={{ borderRadius: 10 }}
     >
       <motion.div layout className='flex justify-between items-center'>
         <h1 className='text-lg font-light'>{title}</h1>
@@ -48,19 +47,19 @@ function Item({content, title}: { content: string; title: string }) {
         {isOpen && <Content content={content} />}
       </AnimatePresence>
     </motion.li>
-  );
+  )
 }
 
-function Content({content}: { content: string }) {
+function Content ({ content }: { content: string }) {
   return (
     <motion.div
       className='mt-4 font-extralight text-sm tracking-wide leading-6'
       layout
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       {content}
     </motion.div>
-  );
+  )
 }

@@ -1,12 +1,11 @@
-import React from 'react';
-import Head from 'next/head';
-import Nav from '../Nav';
-import Footer from '../Footer';
-import {ReactNode} from 'react';
-import ContextProvider from '../context/ContextProvider';
-import {ThemeProvider} from 'next-themes';
+import React, { ReactNode } from 'react'
+import Head from 'next/head'
+import { ThemeProvider } from 'next-themes'
+import Nav from '../Nav'
+import Footer from '../Footer'
+import ContextProvider from '../context/ContextProvider'
 
-const RootLayout = ({children}: { children: ReactNode }) => {
+function RootLayout ({ children }: { children: ReactNode }) {
   return (
     <div>
       <Head>
@@ -29,14 +28,14 @@ const RootLayout = ({children}: { children: ReactNode }) => {
       </Head>
 
       <ContextProvider>
-        <ThemeProvider enableSystem={true} attribute='class'>
+        <ThemeProvider enableSystem attribute='class'>
           <Nav />
           {children}
           <Footer />
         </ThemeProvider>
       </ContextProvider>
     </div>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

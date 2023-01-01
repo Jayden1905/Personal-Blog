@@ -1,31 +1,31 @@
-import React from 'react';
-import type {GetStaticProps, InferGetStaticPropsType, NextPage} from 'next';
-import Head from 'next/head';
-import Layout from '../components/Layout';
-import NotionService from '../services/service';
-import Link from 'next/link';
-import Search from '../components/Search';
-import BlogWrapper from '../components/BlogWrapper';
-import Image from 'next/image';
+import React from 'react'
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import Head from 'next/head'
+import Layout from '../components/Layout'
+import NotionService from '../services/service'
+import Link from 'next/link'
+import Search from '../components/Search'
+import BlogWrapper from '../components/BlogWrapper'
+import Image from 'next/image'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notionService = new NotionService();
+  const notionService = new NotionService()
 
-  const posts = await notionService.getPublishedBlogPosts();
+  const posts = await notionService.getPublishedBlogPosts()
 
   return {
     props: {
-      posts,
+      posts
     },
-    revalidate: 30,
-  };
-};
+    revalidate: 30
+  }
+}
 
 const Home: NextPage = ({
-  posts,
+  posts
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const title = 'Oddinary\'s Blog';
-  const description = 'Welcome to my blog!';
+  const title = "Oddinary's Blog"
+  const description = 'Welcome to my blog!'
   return (
     <>
       <Head>
@@ -90,7 +90,7 @@ const Home: NextPage = ({
         </div>
       </Layout>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

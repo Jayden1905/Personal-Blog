@@ -1,13 +1,13 @@
-import React, {Fragment} from 'react';
-import {Menu, Transition} from '@headlessui/react';
-import {BsFilter} from 'react-icons/bs';
-import DropdownMenuItem from './DropdownMenuItem';
+import React, { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { BsFilter } from 'react-icons/bs'
+import DropdownMenuItem from './DropdownMenuItem'
 
 type Props = {
-  tags: string[];
-};
+  tags: string[]
+}
 
-export default function Categories({tags}: Props) {
+export default function Categories ({ tags }: Props) {
   return (
     <Menu as='div' className='relative inline-block text-left'>
       <div>
@@ -50,5 +50,5 @@ export default function Categories({tags}: Props) {
         </Menu.Items>
       </Transition>
     </Menu>
-  );
+  )
 }

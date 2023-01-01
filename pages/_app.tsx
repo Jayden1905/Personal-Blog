@@ -1,14 +1,14 @@
-import React from 'react';
-import type {AppProps} from 'next/app';
-import {AnimatePresence} from 'framer-motion';
-import RootLayout from '../components/layout/main';
-import '../styles/globals.css';
+import React from 'react'
+import type { AppProps } from 'next/app'
+import { AnimatePresence } from 'framer-motion'
+import RootLayout from '../components/layout/main'
+import '../styles/globals.css'
 
 if (typeof window !== 'undefined') {
-  window.history.scrollRestoration = 'manual';
+  window.history.scrollRestoration = 'manual'
 }
 
-function MyApp({Component, pageProps, router}: AppProps) {
+function MyApp ({ Component, pageProps, router }: AppProps) {
   return (
     <>
       <RootLayout>
@@ -18,7 +18,7 @@ function MyApp({Component, pageProps, router}: AppProps) {
             initial={true}
             onExitComplete={() => {
               if (typeof window !== 'undefined') {
-                window.scrollTo({top: 0});
+                window.scrollTo({ top: 0 })
               }
             }}
           >
@@ -27,7 +27,7 @@ function MyApp({Component, pageProps, router}: AppProps) {
         </div>
       </RootLayout>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

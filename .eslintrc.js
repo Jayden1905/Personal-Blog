@@ -1,29 +1,26 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: [
     'plugin:react/recommended',
-    'google',
-    'plugin:@next/next/recommended',
+    'standard',
+    'plugin:@next/next/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  settings: {
-    react: {
-      version: 'detect',
-    },
+    sourceType: 'module'
   },
   plugins: ['react', '@typescript-eslint'],
-  rules: {
-    'require-jsdoc': 0,
-    'max-len': 'off',
-  },
-};
+  rules: {},
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  }
+}

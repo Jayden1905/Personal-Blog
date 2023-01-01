@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import {getCurrentYear} from '../services/util';
+import React from 'react'
+import Link from 'next/link'
+import { getCurrentYear } from '../services/util'
 
-const currYear = getCurrentYear();
+const currYear = getCurrentYear()
 
-export default function Footer() {
+export default function Footer () {
   return (
     <div className='w-full h-full'>
       <footer className='text-zinc-500 p-4 text-center mx-auto'>
@@ -15,5 +15,5 @@ export default function Footer() {
         . All rights reserved.
       </footer>
     </div>
-  );
+  )
 }

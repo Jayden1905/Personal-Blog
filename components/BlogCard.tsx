@@ -1,15 +1,15 @@
-import React from 'react';
-import moment from 'moment';
-import {BlogPost} from '../interfaces/schema';
-import Link from 'next/link';
-import {motion} from 'framer-motion';
-import Image from 'next/image';
+import React from 'react'
+import moment from 'moment'
+import { BlogPost } from '../interfaces/schema'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 type Props = {
-  post: BlogPost;
-};
+  post: BlogPost
+}
 
-export default function BlogCard({post}: Props) {
+export default function BlogCard ({ post }: Props) {
   return (
     <Link
       href={`/posts/${post.slug}`}
@@ -36,7 +36,9 @@ export default function BlogCard({post}: Props) {
           {post.tags.map((tag) => (
             <div
               key={tag.id}
-              className={`blog rounded-md bg-gray-300 p-2 text-sm dark:bg-zinc-700`}
+              className={
+                'blog rounded-md bg-gray-300 p-2 text-sm dark:bg-zinc-700'
+              }
             >
               {tag.name}
             </div>
@@ -49,5 +51,5 @@ export default function BlogCard({post}: Props) {
         </p>
       </div>
     </Link>
-  );
+  )
 }

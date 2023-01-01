@@ -1,11 +1,11 @@
 export const getCurrentYear = () => {
-  const today = new Date();
+  const today = new Date()
 
-  return today.getFullYear();
-};
+  return today.getFullYear()
+}
 
 export const getExperience = () => {
-  const today = new Date();
+  const today = new Date()
 
-  return today.getFullYear() - 2020;
-};
+  return today.getFullYear() - 2020
+}

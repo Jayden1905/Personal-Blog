@@ -1,17 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
-import Logo from './Logo';
-import ThemeToggleButton from './ThemeToggleButton';
-import {useRouter} from 'next/router';
-import DropdownMenu from './DropdownMenu';
+import React from 'react'
+import Link from 'next/link'
+import Logo from './Logo'
+import ThemeToggleButton from './ThemeToggleButton'
+import { useRouter } from 'next/router'
+import DropdownMenu from './DropdownMenu'
 
-export default function Nav() {
-  const router = useRouter();
-  const pathname = router.pathname;
+export default function Nav () {
+  const router = useRouter()
+  const pathname = router.pathname
 
   const activeLink = (href: string, currentPath: string) => {
-    return currentPath === href ? true : false;
-  };
+    return currentPath === href
+  }
 
   return (
     <div className='backdrop-blur-md fixed w-full z-20 py-4 top-0 px-4'>
@@ -45,5 +45,5 @@ export default function Nav() {
         </div>
       </div>
     </div>
-  );
+  )
 }
