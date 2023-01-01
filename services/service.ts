@@ -1,30 +1,30 @@
-import { Client } from "@notionhq/client";
-import { BlogPost, PostPage } from "../interfaces/schema";
-import { NotionToMarkdown } from "notion-to-md";
+import {Client} from '@notionhq/client';
+import {BlogPost, PostPage} from '../interfaces/schema';
+import {NotionToMarkdown} from 'notion-to-md';
 
 export default class NotionService {
   client: Client;
   n2m: NotionToMarkdown;
 
   constructor() {
-    this.client = new Client({ auth: process.env.NOTION_ACCESS_TOKEN });
-    this.n2m = new NotionToMarkdown({ notionClient: this.client });
+    this.client = new Client({auth: process.env.NOTION_ACCESS_TOKEN});
+    this.n2m = new NotionToMarkdown({notionClient: this.client});
   }
 
   async getPublishedBlogPosts(): Promise<BlogPost[]> {
-    const database = process.env.NOTION_BLOG_DATABASE_ID ?? "";
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? '';
     const response = await this.client.databases.query({
       database_id: database,
       filter: {
-        property: "Publish",
+        property: 'Publish',
         checkbox: {
           equals: true,
         },
       },
       sorts: [
         {
-          property: "Publish",
-          direction: "descending",
+          property: 'Publish',
+          direction: 'descending',
         },
       ],
     });
@@ -35,14 +35,12 @@ export default class NotionService {
   }
 
   async getSingleBlogPost(slug: string): Promise<PostPage> {
-    let post, markdown;
-
-    const database = process.env.NOTION_BLOG_DATABASE_ID ?? "";
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? '';
 
     const response = await this.client.databases.query({
       database_id: database,
       filter: {
-        property: "Slug",
+        property: 'Slug',
         formula: {
           string: {
             equals: slug,
@@ -52,14 +50,14 @@ export default class NotionService {
     });
 
     if (!response.results[0]) {
-      throw "No results available.";
+      throw new Error('No results available.');
     }
 
     const page = response.results[0];
 
     const mdBlogs = await this.n2m.pageToMarkdown(page.id);
-    markdown = this.n2m.toMarkdownString(mdBlogs);
-    post = NotionService.pageToPostTransformer(page);
+    const markdown = this.n2m.toMarkdownString(mdBlogs);
+    const post = NotionService.pageToPostTransformer(page);
 
     return {
       post,
@@ -70,14 +68,14 @@ export default class NotionService {
   private static pageToPostTransformer(page: any): BlogPost {
     let cover = page.cover;
     switch (cover.type) {
-      case "file":
+      case 'file':
         cover = page.cover.file;
         break;
-      case "external":
+      case 'external':
         cover = page.cover.external.url;
         break;
       default:
-        cover = "";
+        cover = '';
     }
 
     return {

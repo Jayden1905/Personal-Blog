@@ -1,9 +1,10 @@
-import { GetStaticProps } from "next";
-import Layout from "../../components/Layout";
-import { BlogPost } from "../../interfaces/schema";
-import NotionService from "../../services/service";
-import SearchCategories from "../../components/SerachCategories";
-import BlogWrapper from "../../components/BlogWrapper";
+import React from 'react';
+import {GetStaticProps} from 'next';
+import Layout from '../../components/Layout';
+import {BlogPost} from '../../interfaces/schema';
+import NotionService from '../../services/service';
+import SearchCategories from '../../components/SerachCategories';
+import BlogWrapper from '../../components/BlogWrapper';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const notionService = new NotionService();
@@ -44,14 +45,14 @@ type Props = {
 
 export function capitalize(str: string) {
   return str
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
 }
 
-export default function CategoryPage({ posts, slug }: Props): JSX.Element {
+export default function CategoryPage({posts, slug}: Props): JSX.Element {
   const filterCategoriesPosts = posts.filter((post) =>
-    post.tags.some((tag) => tag.name.toLowerCase() === slug.toLowerCase())
+    post.tags.some((tag) => tag.name.toLowerCase() === slug.toLowerCase()),
   );
 
   return (

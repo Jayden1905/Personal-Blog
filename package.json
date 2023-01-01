@@ -3,13 +3,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
     "@notionhq/client": "^2.2.3",
     "dayjs": "^1.11.7",
     "framer-motion": "^8.0.2",
+    "google": "^2.1.0",
     "moment": "^2.29.4",
     "next": "latest",
     "next-themes": "^0.2.1",
@@ -23,7 +25,14 @@
     "@types/node": "18.11.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
     "autoprefixer": "^10.4.12",
+    "eslint": "^8.31.0",
+    "eslint-config-eslint": "^7.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-next": "^13.1.1",
+    "eslint-plugin-react": "^7.31.11",
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.4",
     "typescript": "4.9.4"

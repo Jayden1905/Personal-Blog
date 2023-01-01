@@ -1,12 +1,13 @@
-import { createContext, ReactNode, useContext } from "react";
-import GlobalContext from "./GlobalState";
+import React from 'react';
+import {createContext, ReactNode, useContext} from 'react';
+import globalContext from './GlobalState';
 
 type InitialStateProps = {
   searchInput: string;
 };
 
 const initialState = {
-  searchInput: "",
+  searchInput: '',
 };
 
 type ContextProviderProps = {
@@ -21,17 +22,17 @@ type ContextProps = {
 
 const GlobalState = createContext({} as ContextProps);
 
-export function useGlobalContext() {
+export function useGlobalContext(): ContextProps {
   return useContext(GlobalState);
 }
 
-const { Provider, useStore } = GlobalContext(initialState as InitialStateProps);
+const {Provider, useStore} = globalContext(initialState as InitialStateProps);
 
 export default function ContextProvider({
   children,
 }: ContextProviderProps): JSX.Element {
   return (
-    <GlobalState.Provider value={{ useStore }}>
+    <GlobalState.Provider value={{useStore}}>
       <Provider>{children}</Provider>
     </GlobalState.Provider>
   );
