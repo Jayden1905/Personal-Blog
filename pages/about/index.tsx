@@ -5,6 +5,7 @@ import Faqs from "../../components/Faqs";
 import Layout from "../../components/Layout";
 import NotionService from "../../services/service";
 import profilePic from "../../public/me.png";
+import { getCurrentYear } from "../../components/Footer";
 
 export const getStaticProps: GetStaticProps = async () => {
   const notionService = new NotionService();
@@ -19,16 +20,17 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+export const getExperience = () => {
+  const currYear = getCurrentYear();
+  return currYear - 2020;
+};
+
 export default function AboutPage({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const numberOfPosts = posts?.length;
 
-  const today = new Date();
-  const calcExperience = (startingYear: number, currentYear: number) => {
-    return currentYear - startingYear;
-  };
-  const experience = calcExperience(2020, today.getFullYear());
+  const experience = getExperience();
 
   return (
     <Layout>
