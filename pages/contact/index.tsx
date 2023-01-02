@@ -47,7 +47,7 @@ export default function ContactPage ({ contactInfo }: Props) {
             <h1 className='text-3xl font-light sm:text-4xl'>
               Keep in Touch With Me
             </h1>
-            <h1 className='font-extralight text-lg mb-8'>
+            <h1 className='font-extralight text-lg mb-8 tracking-wider'>
               I’m always looking to collaborate on interesting projects with
               great people. Need a supportive hand? I have two!
             </h1>
