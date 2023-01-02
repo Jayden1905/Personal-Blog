@@ -43,7 +43,7 @@ export default function ContactPage ({ contactInfo }: Props) {
     <div>
       <Layout>
         <div className='w-full h-[70vh] flex justify-center items-center sm:mb-48 mb-44'>
-          <div className='text-center flex flex-col gap-4 max-w-xl mx-auto'>
+          <div className='text-center flex flex-col gap-4 max-w-xl mx-auto sm:mt-0 mt-8'>
             <h1 className='text-3xl font-light sm:text-4xl'>
               Keep in Touch With Me
             </h1>
