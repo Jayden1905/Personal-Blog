@@ -1,5 +1,5 @@
 import React from 'react'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Faqs from '../../components/Faqs'
@@ -8,41 +8,53 @@ import NotionService from '../../services/service'
 import profilePic from '../../public/me.png'
 import { getExperience } from '../../services/util'
 
+type BioProps = {
+  name: string
+  profile: typeof profilePic
+  experience: number
+  numberOfPosts: number
+  gitHubProjects: number
+}
+
+type Props = {
+  bio: BioProps
+}
+
 export const getStaticProps: GetStaticProps = async () => {
   const notionService = new NotionService()
 
   const posts = await notionService.getPublishedBlogPosts()
 
+  const bio: BioProps = {
+    name: 'Oddinary',
+    profile: profilePic,
+    experience: getExperience(),
+    numberOfPosts: posts.length,
+    gitHubProjects: 26
+  }
+
   return {
     props: {
-      posts
+      bio
     },
     revalidate: 30
   }
 }
 
-const experience = getExperience()
-
-export default function AboutPage ({
-  posts
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const numberOfPosts = posts?.length
-
+export default function AboutPage ({ bio }: Props) {
   return (
     <Layout>
       <div className='mb-10 flex flex-col gap-10'>
         <h1 className='text-center text-4xl font-light tracking-wide'>
-          Meet Oddinary
+          Meet {bio.name}
         </h1>
         <div className='relative h-96 w-full overflow-hidden rounded-2xl'>
           <Image
-            className='block aspect-auto h-full w-full object-cover object-center'
-            src={profilePic}
+            className='block aspect-square h-full w-full object-cover object-center'
+            src={bio.profile}
             alt='profile image'
-            fill
-            sizes='(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw'
+            width={1000}
+            height={1000}
             priority={true}
             placeholder={'blur'}
           />
@@ -54,21 +66,21 @@ export default function AboutPage ({
         <p className='text-justify text-lg font-light'>
           Hi there! My name is Kyaw Za Yan Naing and I am a web developer with a
           passion for creating and problem-solving. I have been programming for
-          {' ' + experience} years and have experience working with languages
-          such as javascript, typescript and python. I am excited to share my
-          knowledge and experiences with the community through this blog, and I
-          hope to inspire and empower others to pursue a career in tech. Thank
-          you for joining me on this journey!
+          {' ' + bio.experience} years and have experience working with
+          languages such as javascript, typescript and python. I am excited to
+          share my knowledge and experiences with the community through this
+          blog, and I hope to inspire and empower others to pursue a career in
+          tech. Thank you for joining me on this journey!
         </p>
         <div className='my-10 flex flex-col items-center justify-center gap-10 md:flex-row md:gap-20'>
           <div className='text-center'>
-            <h1 className='mb-4 text-7xl font-light'>{experience}</h1>
+            <h1 className='mb-4 text-7xl font-light'>{bio.experience}</h1>
             <p className='text-sm font-extralight dark:opacity-40'>
               Years into web-dev
             </p>
           </div>
           <div className='text-center'>
-            <h1 className='mb-4 text-7xl font-light'>{numberOfPosts}</h1>
+            <h1 className='mb-4 text-7xl font-light'>{bio.numberOfPosts}</h1>
             <p className='text-sm font-extralight dark:opacity-40'>
               Current blog posts
             </p>
