@@ -43,7 +43,7 @@ const Home: NextPage = ({
           <h1 className='font-bold text-xl mb-10 underline underline-offset-8 tracking-wider decoration-zinc-400 dark:decoration-zinc-700 decoration-4'>
             Created With
           </h1>
-          <div className='grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4'>
+          <div className='grid sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-10 mb-6'>
             <Link href={'https://nextjs.org/'} target='_blank'>
               <div className='flex flex-col gap-2 justify-center items-center'>
                 <div className='w-full sm:h-52 h-64 relative'>
@@ -61,16 +61,16 @@ const Home: NextPage = ({
                   />
                 </div>
                 <h1 className='text-xl font-normal'>Next Js</h1>
-                <p className='font-light text-md'>
+                <p className='font-extralight text-md'>
                   Frame Work for building full-stack websites
                 </p>
               </div>
             </Link>
             <Link href={'https://www.notion.so/'} target='_blank'>
               <div className='flex flex-col gap-2 justify-center items-center'>
-                <div className='w-full sm:h-52 h-64 relative'>
+                <div className='w-full sm:h-52 h-64 relative bg-gray-200 rounded-2xl'>
                   <Image
-                    src='https://www.notion.so/front-static/meta/default.png'
+                    src='https://itbabble.files.wordpress.com/2021/11/notion.png'
                     alt='notion'
                     className='h-full w-full object-cover object-center rounded-2xl'
                     fill
@@ -83,7 +83,9 @@ const Home: NextPage = ({
                   />
                 </div>
                 <h1 className='text-xl font-normal'>Notion</h1>
-                <p className='font-light text-md'>Note taking app for CMS</p>
+                <p className='font-extralight text-md'>
+                  A note-taking application for CMS
+                </p>
               </div>
             </Link>
           </div>

@@ -8,7 +8,8 @@ module.exports = {
       'media.graphcms.com',
       'miro.medium.com',
       'et394gxr6kb.exactdn.com',
-      'i.postimg.cc'
+      'i.postimg.cc',
+      'itbabble.files.wordpress.com'
     ]
   }
 }
