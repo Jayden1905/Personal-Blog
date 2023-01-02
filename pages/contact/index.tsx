@@ -19,7 +19,7 @@ type Props = {
   contactInfo: ContactProps
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const contactInfo: ContactProps = {
     name: 'Kyaw Za Yan Naing',
     picture: profilePic,
