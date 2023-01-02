@@ -48,15 +48,15 @@ const Home: NextPage = ({
               <div className='flex flex-col gap-2 justify-center items-center'>
                 <div className='w-full sm:h-52 h-64 relative'>
                   <Image
-                    src='https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png'
+                    src='https://miro.medium.com/max/1400/1*2tmzU7bve-VlTkOMWsk_Hw.jpeg'
                     alt='nextjs'
                     fill
-                    className='h-full w-full rounded-2xl'
+                    className='h-full w-full object-cover object-center rounded-2xl'
                     sizes='(max-width: 768px) 100vw,
                       (max-width: 1200px) 50vw,
                       33vw'
                     placeholder='blur'
-                    blurDataURL='https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png'
+                    blurDataURL='https://miro.medium.com/max/1400/1*2tmzU7bve-VlTkOMWsk_Hw.jpeg'
                     priority={true}
                   />
                 </div>
@@ -72,7 +72,7 @@ const Home: NextPage = ({
                   <Image
                     src='https://www.notion.so/front-static/meta/default.png'
                     alt='notion'
-                    className='h-full w-full rounded-2xl'
+                    className='h-full w-full object-cover object-center rounded-2xl'
                     fill
                     sizes='(max-width: 768px) 100vw,
                       (max-width: 1200px) 50vw,
