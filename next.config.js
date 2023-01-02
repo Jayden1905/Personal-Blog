@@ -11,5 +11,8 @@ module.exports = {
       'i.postimg.cc',
       'itbabble.files.wordpress.com'
     ]
+  },
+  experimental: {
+    scrollRestoration: true
   }
 }

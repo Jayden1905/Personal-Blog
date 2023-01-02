@@ -5,7 +5,7 @@ import { useGlobalContext } from './context/ContextProvider'
 import { useOutsideHook } from './Search'
 import { capitalize } from '../pages/categories/[tag]'
 import { IoIosArrowForward } from 'react-icons/io'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 type Props = {
   posts: BlogPost[]
@@ -16,15 +16,6 @@ export default function SearchCategories ({ posts, slug }: Props) {
   const { useStore } = useGlobalContext()
   const [searchInput, setStore] = useStore((store) => store.searchInput)
   const [open, setOpen] = useState(false)
-
-  const router = useRouter()
-
-  useEffect(() => {
-    router.beforePopState((state) => {
-      state.options.scroll = false
-      return true
-    })
-  }, [])
 
   const divRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -54,12 +45,13 @@ export default function SearchCategories ({ posts, slug }: Props) {
   return (
     <div className='flex justify-between gap-4 items-center mb-10'>
       <div className='flex gap-1 justify-center items-center'>
-        <div
-          onClick={() => router.back()}
+        <Link
+          href={'/'}
+          scroll={false}
           className='cursor-pointer underline underline-offset-4 font-normal'
         >
           Index
-        </div>
+        </Link>
         <IoIosArrowForward className='text-xl font-extralight opacity-50' />
         <span className='font-extrabold text-orange-500'>
           {capitalize(slug)}

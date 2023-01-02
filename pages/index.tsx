@@ -1,12 +1,12 @@
 import React from 'react'
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
-import Layout from '../components/Layout'
 import NotionService from '../services/service'
 import Link from 'next/link'
 import Search from '../components/Search'
 import BlogWrapper from '../components/BlogWrapper'
 import Image from 'next/image'
+import { NoScrollLayout } from '../components/layout/NoScrollLayout'
 
 export const getStaticProps: GetStaticProps = async () => {
   const notionService = new NotionService()
@@ -36,7 +36,7 @@ const Home: NextPage = ({
           content={description}
         />
       </Head>
-      <Layout>
+      <NoScrollLayout>
         <Search posts={posts} />
         <BlogWrapper posts={posts} />
         <div>
@@ -90,7 +90,7 @@ const Home: NextPage = ({
             </Link>
           </div>
         </div>
-      </Layout>
+      </NoScrollLayout>
     </>
   )
 }

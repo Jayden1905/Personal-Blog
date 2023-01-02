@@ -1,10 +1,10 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import Layout from '../../components/Layout'
 import { BlogPost } from '../../interfaces/schema'
 import NotionService from '../../services/service'
 import SearchCategories from '../../components/SerachCategories'
 import BlogWrapper from '../../components/BlogWrapper'
+import { NoScrollLayout } from '../../components/layout/NoScrollLayout'
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const notionService = new NotionService()
@@ -56,9 +56,9 @@ export default function CategoryPage ({ posts, slug }: Props) {
   )
 
   return (
-    <Layout>
+    <NoScrollLayout>
       <SearchCategories posts={filterCategoriesPosts} slug={slug} />
       <BlogWrapper posts={filterCategoriesPosts} />
-    </Layout>
+    </NoScrollLayout>
   )
 }
