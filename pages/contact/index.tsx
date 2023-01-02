@@ -42,7 +42,7 @@ export default function ContactPage ({ contactInfo }: Props) {
   return (
     <div>
       <Layout>
-        <div className='w-full sm:h-[70vh] h-full flex justify-center items-center sm:mb-48 mb-60'>
+        <div className='w-full h-full flex justify-center items-center mb-60'>
           <div className='text-center flex flex-col gap-4 max-w-xl mx-auto'>
             <h1 className='text-3xl font-light sm:text-4xl'>
               Keep in Touch With Me
