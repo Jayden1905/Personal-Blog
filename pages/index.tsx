@@ -26,6 +26,7 @@ const Home: NextPage = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = "Oddinary's Blog"
   const description = 'Welcome to my blog!'
+
   return (
     <>
       <Head>
@@ -40,50 +41,50 @@ const Home: NextPage = ({
         <Search posts={posts} />
         <BlogWrapper posts={posts} />
         <div>
-          <h1 className='font-bold text-xl mb-10 underline underline-offset-8 tracking-wider decoration-zinc-400 dark:decoration-zinc-700 decoration-4'>
+          <h1 className="mb-10 text-xl font-bold tracking-wider underline decoration-zinc-400 decoration-4 underline-offset-8 dark:decoration-zinc-700">
             Created With
           </h1>
-          <div className='grid sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-10 mb-6'>
-            <Link href={'https://nextjs.org/'} target='_blank'>
-              <div className='flex flex-col gap-2 justify-center items-center'>
-                <div className='w-full sm:h-52 h-64 relative'>
+          <div className="mb-6 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-4">
+            <Link href={'https://nextjs.org/'} target="_blank">
+              <div className="flex flex-col items-center justify-center gap-2">
+                <div className="relative h-64 w-full sm:h-52">
                   <Image
-                    src='https://miro.medium.com/max/1400/1*2tmzU7bve-VlTkOMWsk_Hw.jpeg'
-                    alt='nextjs'
+                    src="https://miro.medium.com/max/1400/1*2tmzU7bve-VlTkOMWsk_Hw.jpeg"
+                    alt="nextjs"
                     fill
-                    className='h-full w-full object-cover object-center rounded-2xl'
-                    sizes='(max-width: 768px) 100vw,
+                    className="h-full w-full rounded-2xl object-cover object-center"
+                    sizes="(max-width: 768px) 100vw,
                       (max-width: 1200px) 50vw,
-                      33vw'
-                    placeholder='blur'
-                    blurDataURL='https://miro.medium.com/max/1400/1*2tmzU7bve-VlTkOMWsk_Hw.jpeg'
+                      33vw"
+                    placeholder="blur"
+                    blurDataURL="https://miro.medium.com/max/1400/1*2tmzU7bve-VlTkOMWsk_Hw.jpeg"
                     priority={true}
                   />
                 </div>
-                <h1 className='text-xl font-normal'>Next Js</h1>
-                <p className='font-extralight text-md'>
+                <h1 className="text-xl font-normal">Next Js</h1>
+                <p className="text-md font-extralight">
                   Frame Work for building full-stack websites
                 </p>
               </div>
             </Link>
-            <Link href={'https://www.notion.so/'} target='_blank'>
-              <div className='flex flex-col gap-2 justify-center items-center'>
-                <div className='w-full sm:h-52 h-64 relative bg-gray-200 rounded-2xl'>
+            <Link href={'https://www.notion.so/'} target="_blank">
+              <div className="flex flex-col items-center justify-center gap-2">
+                <div className="relative h-64 w-full rounded-2xl bg-gray-200 sm:h-52">
                   <Image
-                    src='https://itbabble.files.wordpress.com/2021/11/notion.png'
-                    alt='notion'
-                    className='h-full w-full object-cover object-center rounded-2xl'
+                    src="https://itbabble.files.wordpress.com/2021/11/notion.png"
+                    alt="notion"
+                    className="h-full w-full rounded-2xl object-cover object-center"
                     fill
-                    sizes='(max-width: 768px) 100vw,
+                    sizes="(max-width: 768px) 100vw,
                       (max-width: 1200px) 50vw,
-                      33vw'
-                    placeholder='blur'
-                    blurDataURL='https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png'
+                      33vw"
+                    placeholder="blur"
+                    blurDataURL="https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png"
                     priority={true}
                   />
                 </div>
-                <h1 className='text-xl font-normal'>Notion</h1>
-                <p className='font-extralight text-md'>
+                <h1 className="text-xl font-normal">Notion</h1>
+                <p className="text-md font-extralight">
                   A note-taking application for CMS
                 </p>
               </div>
