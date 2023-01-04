@@ -20,3 +20,21 @@ export const pageTransition = {
     }
   }
 }
+
+export const focusAnimation = {
+  hidden: {
+    opacity: 0,
+    transition: {
+      duration: 0.75,
+      ease: 'easeOut'
+    }
+  },
+
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 0.75,
+      ease: 'easeOut'
+    }
+  }
+}
