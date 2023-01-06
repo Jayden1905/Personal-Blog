@@ -55,8 +55,8 @@ export default function AboutPage ({ bio }: Props) {
             alt='profile image'
             width={1000}
             height={1000}
-            priority={true}
             placeholder={'blur'}
+            loading='eager'
           />
         </div>
         <h1 className='text-2xl font-light tracking-wide'>
