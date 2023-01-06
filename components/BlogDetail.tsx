@@ -43,11 +43,10 @@ export default function BlogDetail ({ post, markdown }: Props) {
             </p>
             <Image
               src={post.cover}
-              alt={post.title}
+              alt={'blog cover image'}
               className='mt-10 mb-20 aspect-auto h-full w-full rounded-xl'
               width={1000}
               height={1000}
-              priority
             />
           </div>
 

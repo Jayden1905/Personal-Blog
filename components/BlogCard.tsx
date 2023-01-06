@@ -38,13 +38,12 @@ export default function BlogCard ({ post }: Props) {
           <div className='blog relative h-80 w-full overflow-hidden rounded-xl'>
             <Image
               src={post.cover}
-              alt={post.title}
+              alt={'blog cover image'}
               fill
               sizes='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw'
               className='blog block aspect-auto h-full w-full object-cover object-center'
-              priority
             />
           </div>
           <div className='blog flex flex-wrap gap-2'>
