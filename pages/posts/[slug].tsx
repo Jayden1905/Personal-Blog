@@ -26,7 +26,7 @@ export async function getStaticPaths () {
 
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   }
 }
 
@@ -36,7 +36,10 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
   const p = await notionService.getSingleBlogPost(slug)
 
   if (!p) {
-    throw new Error()
+    // throw new Error()
+    return {
+      notFound: true
+    }
   }
 
   return {
