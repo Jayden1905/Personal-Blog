@@ -7,7 +7,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     req.body?.record?.slug || req.body?.old_record?.slug
   }`
 
-  const categoriesPathToRevalidate = '/categories'
+  const categoriesPathToRevalidate = `/categories/${
+    req.body?.record?.slug || req.body?.old_record?.slug
+  }`
 
   res.revalidate(categoriesPathToRevalidate)
 
