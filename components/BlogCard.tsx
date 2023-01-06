@@ -44,7 +44,7 @@ export default function BlogCard ({ post }: Props) {
               (max-width: 1200px) 50vw,
               33vw'
               className='blog block aspect-auto h-full w-full object-cover object-center'
-              priority={true}
+              priority
             />
           </div>
           <div className='blog flex flex-wrap gap-2'>
