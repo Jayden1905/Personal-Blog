@@ -6,21 +6,6 @@ import SearchCategories from '../../components/SerachCategories'
 import BlogWrapper from '../../components/BlogWrapper'
 import { NoScrollLayout } from '../../components/layout/NoScrollLayout'
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const notionService = new NotionService()
-
-  const posts = await notionService.getPublishedBlogPosts()
-  const tag = context.params?.tag
-
-  return {
-    props: {
-      posts,
-      slug: tag
-    },
-    revalidate: 30
-  }
-}
-
 export async function getStaticPaths () {
   const notionService = new NotionService()
 
@@ -35,6 +20,21 @@ export async function getStaticPaths () {
   return {
     paths,
     fallback: 'blocking'
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const notionService = new NotionService()
+
+  const posts = await notionService.getPublishedBlogPosts()
+  const tag = context.params?.tag
+
+  return {
+    props: {
+      posts,
+      slug: tag
+    },
+    revalidate: 30
   }
 }
 
