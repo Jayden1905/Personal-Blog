@@ -1,7 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await res.revalidate('/')
+
+  const pathToRevalidate = `/posts/${
+    req.body?.record?.slug || req.body?.old_record?.slug
+  }`
+  res.revalidate(pathToRevalidate)
 
   return res.send({ revalidate: true })
 }
