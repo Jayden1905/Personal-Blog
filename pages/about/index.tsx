@@ -56,7 +56,7 @@ export default function AboutPage ({ bio }: Props) {
             width={1000}
             height={1000}
             placeholder={'blur'}
-            loading='eager'
+            priority
           />
         </div>
         <h1 className='text-2xl font-light tracking-wide'>

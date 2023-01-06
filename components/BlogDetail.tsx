@@ -47,6 +47,7 @@ export default function BlogDetail ({ post, markdown }: Props) {
               className='mt-10 mb-20 aspect-auto h-full w-full rounded-xl'
               width={1000}
               height={1000}
+              priority
             />
           </div>
 

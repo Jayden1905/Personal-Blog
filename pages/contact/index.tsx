@@ -60,7 +60,7 @@ export default function ContactPage ({ contactInfo }: Props) {
                   width={1000}
                   height={1000}
                   placeholder='blur'
-                  loading='eager'
+                  priority
                 />
               </div>
               <div className='description'>
