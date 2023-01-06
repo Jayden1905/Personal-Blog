@@ -1,9 +1,5 @@
 import React from 'react'
-import type {
-  GetServerSideProps,
-  InferGetServerSidePropsType,
-  NextPage
-} from 'next'
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 import NotionService from '../services/service'
 import Link from 'next/link'
@@ -12,12 +8,7 @@ import BlogWrapper from '../components/BlogWrapper'
 import Image from 'next/image'
 import { NoScrollLayout } from '../components/layout/NoScrollLayout'
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=30'
-  )
-
+export const getStaticProps: GetStaticProps = async () => {
   const notionService = new NotionService()
 
   const posts = await notionService.getPublishedBlogPosts()
@@ -25,13 +16,14 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   return {
     props: {
       posts
-    }
+    },
+    revalidate: 30
   }
 }
 
 const Home: NextPage = ({
   posts
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = "Oddinary's Blog"
   const description = 'Welcome to my blog!'
 

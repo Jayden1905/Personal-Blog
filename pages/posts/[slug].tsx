@@ -1,24 +1,39 @@
 import React from 'react'
-import {
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-  PreviewData
-} from 'next'
+import { InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import NotionService from '../../services/service'
 import { motion } from 'framer-motion'
 import { pageTransition } from '../../animation/motion'
 import BlogDetail from '../../components/BlogDetail'
-import { ParsedUrlQuery } from 'querystring'
 import { BlogPost } from '../../interfaces/schema'
 
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext<ParsedUrlQuery, PreviewData> | any
-) => {
+type ParamsProps = {
+  params: {
+    slug: string
+  }
+}
+
+export async function getStaticPaths () {
   const notionService = new NotionService()
 
-  const p = await notionService.getSingleBlogPost(context.params?.slug)
+  const posts = await notionService.getPublishedBlogPosts()
+
+  const paths = posts.map(({ slug }: BlogPost) => ({
+    params: {
+      slug
+    }
+  }))
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
+  const notionService = new NotionService()
+
+  const p = await notionService.getSingleBlogPost(slug)
 
   if (!p) {
     throw new Error()
@@ -30,21 +45,6 @@ export const getStaticProps: GetStaticProps = async (
       post: p.post
     },
     revalidate: 30
-  }
-}
-
-export async function getStaticPaths () {
-  const notionService = new NotionService()
-
-  const posts = await notionService.getPublishedBlogPosts()
-
-  const paths = posts.map((post: BlogPost) => {
-    return `/posts/${post.slug}`
-  })
-
-  return {
-    paths,
-    fallback: false
   }
 }
 
