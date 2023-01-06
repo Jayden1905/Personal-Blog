@@ -1,6 +1,7 @@
 import React from 'react'
 import type { AppProps } from 'next/app'
 import { AnimatePresence } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import RootLayout from '../components/layout/main'
 import '../styles/globals.css'
 
@@ -23,6 +24,7 @@ function MyApp ({ Component, pageProps, router }: AppProps) {
             }}
           >
             <Component {...pageProps} key={router.route} />
+            <Analytics />
           </AnimatePresence>
         </div>
       </RootLayout>
