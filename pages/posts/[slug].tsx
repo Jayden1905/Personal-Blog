@@ -5,7 +5,6 @@ import NotionService from '../../services/service'
 import { motion } from 'framer-motion'
 import { pageTransition } from '../../animation/motion'
 import BlogDetail from '../../components/BlogDetail'
-import { BlogPost } from '../../interfaces/schema'
 
 type ParamsProps = {
   params: {
@@ -16,9 +15,9 @@ type ParamsProps = {
 export async function getStaticPaths () {
   const notionService = new NotionService()
 
-  const posts = await notionService.getPublishedBlogPosts()
+  const slugs = await notionService.getSlugs()
 
-  const paths = posts.map(({ slug }: BlogPost) => ({
+  const paths = slugs.map((slug) => ({
     params: {
       slug
     }
@@ -34,6 +33,7 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
   const notionService = new NotionService()
 
   const p = await notionService.getSingleBlogPost(slug)
+  const adjcentPosts = await notionService.getAdjacentPosts(slug)
 
   if (!p) {
     // throw new Error()
@@ -45,7 +45,8 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
   return {
     props: {
       markdown: p.markdown,
-      post: p.post
+      post: p.post,
+      adjcentPosts
     },
     revalidate: 30
   }
@@ -53,7 +54,8 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
 
 const Post = ({
   markdown,
-  post
+  post,
+  adjcentPosts
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <motion.div

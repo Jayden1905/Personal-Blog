@@ -35,7 +35,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { tag } }: ParamsProps) => {
   const notionService = new NotionService()
-  console.log(tag)
 
   const posts = await notionService.getCategoryPosts(capitalize(tag))
 

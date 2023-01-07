@@ -9,7 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   await res.revalidate(categoriesPath)
 
-  return res.send({ revalidate: true })
+  return res.json({ revalidated: true })
 }
 
 export default handler

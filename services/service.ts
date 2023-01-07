@@ -34,6 +34,92 @@ export default class NotionService {
     })
   }
 
+  async getSlugs (): Promise<string[]> {
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
+    const response = await this.client.databases.query({
+      database_id: database,
+      filter: {
+        property: 'Publish',
+        checkbox: {
+          equals: true
+        }
+      }
+    })
+
+    const posts = response.results.map((res) => {
+      return NotionService.pageToPostTransformer(res)
+    })
+
+    return posts.map((post) => post.slug)
+  }
+
+  async getAdjacentPosts (slug: string): Promise<BlogPost[]> {
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
+    const response = await this.client.databases.query({
+      database_id: database,
+      filter: {
+        property: 'Publish',
+        checkbox: {
+          equals: true
+        }
+      },
+      sorts: [
+        {
+          property: 'Publish',
+          direction: 'descending'
+        }
+      ]
+    })
+
+    const posts = response.results.map((res) => {
+      return NotionService.pageToPostTransformer(res)
+    })
+
+    const index = posts.findIndex((post) => post.slug === slug)
+
+    const previous = posts[index - 1]
+    const next = posts[index + 1]
+
+    return [previous, next].filter((post) => post !== undefined)
+  }
+
+  async continueReadingPosts (slug: string): Promise<BlogPost[]> {
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
+    const response = await this.client.databases.query({
+      database_id: database,
+      filter: {
+        property: 'Publish',
+        checkbox: {
+          equals: true
+        }
+      },
+      sorts: [
+        {
+          property: 'Publish',
+          direction: 'descending'
+        }
+      ]
+    })
+
+    const posts = response.results.map((res) => {
+      return NotionService.pageToPostTransformer(res)
+    })
+
+    const index = posts.findIndex((post) => post.slug === slug)
+
+    const currentPost = posts[index]
+
+    const continueReadingPosts = posts.filter((post) => {
+      return post.tags.some((tag) => {
+        return currentPost.tags.some((currentTag) => {
+          return tag.name === currentTag.name
+        })
+      })
+    })
+
+    return continueReadingPosts
+  }
+
   async getBlogCategories (): Promise<string[]> {
     const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
     const response = await this.client.databases.query({
