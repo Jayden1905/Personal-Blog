@@ -1,37 +1,51 @@
 import React from 'react'
-import { GetServerSideProps } from 'next'
 import { BlogPost } from '../../interfaces/schema'
 import NotionService from '../../services/service'
 import SearchCategories from '../../components/SerachCategories'
 import BlogWrapper from '../../components/BlogWrapper'
 import { NoScrollLayout } from '../../components/layout/NoScrollLayout'
 
-export const getServerSideProps: GetServerSideProps = async ({
-  req,
-  res,
-  params
-}) => {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=30'
-  )
-
-  const notionService = new NotionService()
-
-  const posts = await notionService.getPublishedBlogPosts()
-  const tag = params?.tag
-
-  return {
-    props: {
-      posts,
-      slug: tag
-    }
+type ParamsProps = {
+  params: {
+    tag: string
   }
 }
 
 type Props = {
   posts: BlogPost[]
-  slug: string
+  tag: string
+}
+
+export const getStaticPaths = async () => {
+  const notionService = new NotionService()
+
+  const categories = await notionService.getBlogCategories()
+
+  const paths = categories.map((category) => ({
+    params: {
+      tag: category.toLowerCase()
+    }
+  }))
+
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}
+
+export const getStaticProps = async ({ params: { tag } }: ParamsProps) => {
+  const notionService = new NotionService()
+  console.log(tag)
+
+  const posts = await notionService.getCategoryPosts(capitalize(tag))
+
+  return {
+    props: {
+      posts,
+      tag
+    },
+    revalidate: 30
+  }
 }
 
 export function capitalize (str: string) {
@@ -41,14 +55,14 @@ export function capitalize (str: string) {
     .join(' ')
 }
 
-export default function CategoryPage ({ posts, slug }: Props) {
+export default function CategoryPage ({ posts, tag }: Props) {
   const filterCategoriesPosts = posts.filter((post) =>
-    post.tags.some((tag) => tag.name.toLowerCase() === slug.toLowerCase())
+    post.tags.some((item) => item.name.toLowerCase() === tag.toLowerCase())
   )
 
   return (
     <NoScrollLayout>
-      <SearchCategories posts={filterCategoriesPosts} slug={slug} />
+      <SearchCategories posts={filterCategoriesPosts} slug={tag} />
       <BlogWrapper posts={filterCategoriesPosts} />
     </NoScrollLayout>
   )

@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }`
 
   const categoriesPath = `/categories/${
-    req.body?.record?.slug || req.body?.old_record?.slug
+    req.body?.record?.tag || req.body?.old_record?.tag
   }`
 
   await res.revalidate(categoriesPath)

@@ -34,6 +34,64 @@ export default class NotionService {
     })
   }
 
+  async getBlogCategories (): Promise<string[]> {
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
+    const response = await this.client.databases.query({
+      database_id: database,
+      filter: {
+        property: 'Publish',
+        checkbox: {
+          equals: true
+        }
+      }
+    })
+
+    const posts = response.results.map((res) => {
+      return NotionService.pageToPostTransformer(res)
+    })
+
+    const categories = posts.map((post) => {
+      return post.tags.map((tag) => tag.name)
+    })
+
+    const uniqueCategories = new Set(categories.flat())
+
+    return Array.from(uniqueCategories)
+  }
+
+  async getCategoryPosts (category: string): Promise<BlogPost[]> {
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
+    const response = await this.client.databases.query({
+      database_id: database,
+      filter: {
+        and: [
+          {
+            property: 'Publish',
+            checkbox: {
+              equals: true
+            }
+          },
+          {
+            property: 'Tags',
+            multi_select: {
+              contains: category
+            }
+          }
+        ]
+      },
+      sorts: [
+        {
+          property: 'Publish',
+          direction: 'descending'
+        }
+      ]
+    })
+
+    return response.results.map((res) => {
+      return NotionService.pageToPostTransformer(res)
+    })
+  }
+
   async getSingleBlogPost (slug: string): Promise<PostPage> {
     const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
 
