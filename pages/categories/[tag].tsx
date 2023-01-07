@@ -1,40 +1,31 @@
 import React from 'react'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { BlogPost } from '../../interfaces/schema'
 import NotionService from '../../services/service'
 import SearchCategories from '../../components/SerachCategories'
 import BlogWrapper from '../../components/BlogWrapper'
 import { NoScrollLayout } from '../../components/layout/NoScrollLayout'
 
-export async function getStaticPaths () {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+  params
+}) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=30'
+  )
+
   const notionService = new NotionService()
 
   const posts = await notionService.getPublishedBlogPosts()
-  const allTags = new Set<string>()
-  posts.map((post) => post.tags.map((tag) => allTags.add(tag.name)))
-
-  const paths = Array.from(allTags).map((tag) => {
-    return `/categories/${tag.toLowerCase()}`
-  })
-
-  return {
-    paths,
-    fallback: 'blocking'
-  }
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const notionService = new NotionService()
-
-  const posts = await notionService.getPublishedBlogPosts()
-  const tag = context.params?.tag
+  const tag = params?.tag
 
   return {
     props: {
       posts,
       slug: tag
-    },
-    revalidate: 30
+    }
   }
 }
 

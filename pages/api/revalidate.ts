@@ -1,19 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  res.revalidate('/')
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  await res.revalidate('/')
 
   const pathToRevalidate = `/posts/${
     req.body?.record?.slug || req.body?.old_record?.slug
   }`
 
   const categoriesPath = `/categories/${
-    req.body?.record?.category || req.body?.old_record?.category
+    req.body?.record?.slug || req.body?.old_record?.slug
   }`
 
-  res.revalidate(categoriesPath)
+  await res.revalidate(categoriesPath)
 
-  res.revalidate(pathToRevalidate)
+  await res.revalidate(pathToRevalidate)
 
   return res.send({ revalidate: true })
 }

@@ -58,10 +58,10 @@ const Post = ({
   return (
     <motion.div
       variants={pageTransition}
-      initial='initial'
-      animate='animate'
-      exit='exit'
-      className='max-w-5xl pb-6'
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="max-w-5xl pb-6"
     >
       <Head>
         <title>{post.title}</title>
