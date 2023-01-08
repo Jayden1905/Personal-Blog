@@ -35,10 +35,10 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
   const p = await notionService.getSingleBlogPost(slug)
   const adjcentPosts = await notionService.getAdjacentPosts(slug)
 
-  if (!p) {
-    // throw new Error()
+  if (!p || !adjcentPosts) {
     return {
-      notFound: true
+      notFound: true,
+      revalidate: 10
     }
   }
 
@@ -48,14 +48,13 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
       post: p.post,
       adjcentPosts
     },
-    revalidate: 30
+    revalidate: 10
   }
 }
 
 const Post = ({
   markdown,
-  post,
-  adjcentPosts
+  post
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <motion.div

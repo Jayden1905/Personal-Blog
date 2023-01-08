@@ -38,12 +38,19 @@ export const getStaticProps = async ({ params: { tag } }: ParamsProps) => {
 
   const posts = await notionService.getCategoryPosts(capitalize(tag))
 
+  if (!posts) {
+    return {
+      notFound: true,
+      revalidate: 10
+    }
+  }
+
   return {
     props: {
       posts,
       tag
     },
-    revalidate: 30
+    revalidate: 10
   }
 }
 
