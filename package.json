@@ -2,11 +2,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run partytown && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "partytown": "partytown copylib public/~partytown"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.7.4",
     "@headlessui/react": "^1.7.7",
     "@notionhq/client": "^2.2.3",
     "@vercel/analytics": "^0.1.6",
