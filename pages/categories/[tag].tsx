@@ -62,14 +62,10 @@ export function capitalize (str: string) {
 }
 
 export default function CategoryPage ({ posts, tag }: Props) {
-  const filterCategoriesPosts = posts.filter((post) =>
-    post.tags.some((item) => item.name.toLowerCase() === tag.toLowerCase())
-  )
-
   return (
     <NoScrollLayout>
-      <SearchCategories posts={filterCategoriesPosts} slug={tag} />
-      <BlogWrapper posts={filterCategoriesPosts} />
+      <SearchCategories posts={posts} slug={tag} />
+      <BlogWrapper posts={posts} />
     </NoScrollLayout>
   )
 }

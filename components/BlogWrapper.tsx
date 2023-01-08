@@ -20,7 +20,7 @@ export default function BlogWrapper ({ posts }: Props) {
     <>
       {searchInput === ''
         ? (
-        <div className='grid grid-cols-1 gap-10'>
+        <div className="grid grid-cols-1 gap-10">
           {posts.map((post: BlogPost) => (
             <BlogCard key={post.id} post={post} />
           ))}

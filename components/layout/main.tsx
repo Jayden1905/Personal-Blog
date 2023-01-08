@@ -4,7 +4,6 @@ import { ThemeProvider } from 'next-themes'
 import Nav from '../Nav'
 import Footer from '../Footer'
 import ContextProvider from '../context/ContextProvider'
-import { Partytown } from '@builder.io/partytown/react'
 
 function RootLayout ({ children }: { children: ReactNode }) {
   return (
@@ -42,7 +41,6 @@ function RootLayout ({ children }: { children: ReactNode }) {
           href="/favicon-16x16.png"
         />
         <title>Oddinary&apos;s Blog</title>
-        <Partytown debug={true} forward={['dataLayer.push']} />
       </Head>
 
       <ContextProvider>

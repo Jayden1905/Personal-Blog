@@ -43,40 +43,40 @@ export default function SearchCategories ({ posts, slug }: Props) {
   }
 
   return (
-    <div className='flex justify-between gap-4 items-center mb-10'>
-      <div className='flex gap-1 justify-center items-center'>
+    <div className="mb-10 flex items-center justify-between gap-4">
+      <div className="flex items-center justify-center gap-1">
         <Link
           href={'/'}
           scroll={false}
-          className='cursor-pointer underline underline-offset-4 font-normal'
+          className="cursor-pointer font-normal underline underline-offset-4"
         >
           Index
         </Link>
-        <IoIosArrowForward className='text-xl font-extralight opacity-50' />
-        <span className='font-extrabold text-orange-500'>
+        <IoIosArrowForward className="text-xl font-extralight opacity-50" />
+        <span className="font-extrabold text-orange-500">
           {capitalize(slug)}
         </span>
       </div>
-      <div className='flex gap-4 justify-center items-center'>
+      <div className="flex items-center justify-center gap-4">
         <div
           ref={divRef}
-          className='cursor-pointer flex justify-center items-center relative'
+          className="relative flex cursor-pointer items-center justify-center"
         >
           <input
-            type='text'
+            type="text"
             ref={inputRef}
             value={searchInput}
             onChange={(event) => setStore({ searchInput: event.target.value })}
             className={`${
-              open ? 'sm:w-80 w-32 opacity-100' : 'w-0 opacity-0'
-            } dark:bg-zinc-800 bg-gray-300 right-0 px-4 sm:py-2 py-1 outline-none rounded-full transition-all duration-300 ease-out`}
+              open ? 'w-32 opacity-100 sm:w-80' : 'w-0 opacity-0'
+            } right-0 rounded-full bg-gray-300 px-4 py-1 outline-none transition-all duration-300 ease-out dark:bg-zinc-800 sm:py-2`}
           />
           {!open && (
             <BiSearch
               role={'button'}
-              name='search'
+              name="search"
               onClick={btnClick}
-              className='absolute text-2xl z-10 transition-all duration-300 ease-out'
+              className="absolute z-10 text-2xl transition-all duration-300 ease-out"
             />
           )}
         </div>
