@@ -9,7 +9,7 @@ if (typeof window !== 'undefined') {
   window.history.scrollRestoration = 'manual'
 }
 
-function MyApp ({ Component, pageProps, router }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
       <RootLayout>

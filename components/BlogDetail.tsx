@@ -51,7 +51,7 @@ export default function BlogDetail({ post, markdown }: Props) {
             />
           </div>
 
-          <div className='mx-auto text-justify prose dark:prose-invert'>
+          <div className='mx-auto tracking-wide leading-6 text-justify prose dark:prose-invert'>
             <ReactMarkdown>{markdown}</ReactMarkdown>
           </div>
         </Layout>

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
+    "@next/font": "^13.1.1",
     "@notionhq/client": "^2.2.3",
     "@vercel/analytics": "^0.1.6",
     "dayjs": "^1.11.7",
