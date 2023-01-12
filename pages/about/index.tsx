@@ -6,7 +6,7 @@ import Faqs from '../../components/Faqs'
 import Layout from '../../components/Layout'
 import NotionService from '../../services/service'
 import profilePic from '../../public/me.png'
-import { getExperience } from '../../services/util'
+import { getExperience, getGithubProjects } from '../../services/util'
 
 type BioProps = {
   name: string
@@ -25,12 +25,15 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const posts = await notionService.getPublishedBlogPosts()
 
+  const gitHubProjects = await getGithubProjects()
+  console.log(gitHubProjects)
+
   const bio: BioProps = {
     name: 'Oddinary',
     profile: profilePic,
     experience: getExperience(),
     numberOfPosts: posts.length,
-    gitHubProjects: 26
+    gitHubProjects
   }
 
   return {
