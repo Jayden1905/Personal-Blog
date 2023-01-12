@@ -25,26 +25,26 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const posts = await notionService.getPublishedBlogPosts()
 
-  const gitHubProjects = await getGithubProjects()
-  console.log(gitHubProjects)
+  const numberOfGitHubProjects = await getGithubProjects()
+  console.log(numberOfGitHubProjects)
 
   const bio: BioProps = {
     name: 'Oddinary',
     profile: profilePic,
     experience: getExperience(),
     numberOfPosts: posts.length,
-    gitHubProjects
+    gitHubProjects: numberOfGitHubProjects,
   }
 
   return {
     props: {
-      bio
+      bio,
     },
-    revalidate: 30
+    revalidate: 30,
   }
 }
 
-export default function AboutPage ({ bio }: Props) {
+export default function AboutPage({ bio }: Props) {
   return (
     <Layout>
       <div className='mb-10 flex flex-col gap-10'>
@@ -89,7 +89,7 @@ export default function AboutPage ({ bio }: Props) {
             </p>
           </div>
           <div className='text-center'>
-            <h1 className='mb-4 text-7xl font-light'>26</h1>
+            <h1 className='mb-4 text-7xl font-light'>{bio.gitHubProjects}</h1>
             <p className='text-sm font-extralight dark:opacity-40'>
               Github Projects
             </p>
