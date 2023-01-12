@@ -5,11 +5,11 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-  DocumentInitialProps
+  DocumentInitialProps,
 } from 'next/document'
 
 class MyDocument extends Document {
-  static async getInitialProps (
+  static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
     const originalRenderPage = ctx.renderPage
@@ -17,7 +17,7 @@ class MyDocument extends Document {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => App,
-        enhanceComponent: (Component) => Component
+        enhanceComponent: (Component) => Component,
       })
 
     const initialProps = await Document.getInitialProps(ctx)
@@ -25,7 +25,7 @@ class MyDocument extends Document {
     return initialProps
   }
 
-  render () {
+  render() {
     return (
       <Html lang='en'>
         <Head>
