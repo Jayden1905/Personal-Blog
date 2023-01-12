@@ -15,14 +15,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      posts
+      posts,
     },
-    revalidate: 10
+    revalidate: 10,
   }
 }
 
 const Home: NextPage = ({
-  posts
+  posts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = "Oddinary's Blog"
   const description = 'Welcome to my blog!'
