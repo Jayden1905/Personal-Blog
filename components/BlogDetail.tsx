@@ -5,8 +5,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import Layout from './Layout'
-import ReactMarkdown from 'react-markdown'
 import { useGlobalContext } from './context/ContextProvider'
+import Markdown from 'markdown-to-jsx'
+import Code from './Code'
 
 type Props = {
   post: BlogPost
@@ -50,9 +51,18 @@ export default function BlogDetail({ post, markdown }: Props) {
               priority
             />
           </div>
-
-          <div className='mx-auto tracking-wide leading-6 text-justify prose dark:prose-invert'>
-            <ReactMarkdown>{markdown}</ReactMarkdown>
+          <div className='mx-auto m-0 p-0 tracking-wide leading-6 text-justify prose dark:prose-invert'>
+            <Markdown
+              options={{
+                overrides: {
+                  code: {
+                    component: Code,
+                  },
+                },
+              }}
+            >
+              {markdown}
+            </Markdown>
           </div>
         </Layout>
       </div>

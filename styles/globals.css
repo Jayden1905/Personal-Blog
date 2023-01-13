@@ -5,3 +5,9 @@
 :root {
   scroll-behavior: auto !important;
 }
+
+.prose :where(pre):not(:where([class~='not-prose'] *)) {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}

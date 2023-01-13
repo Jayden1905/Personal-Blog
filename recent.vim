@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Documents/Dev_Projects/blog
+cd ~/Documents/Dev_Projects/Personal-Blog
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,17 +13,14 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +38 ~/Documents/Dev_Projects/blog/pages/index.tsx
-badd +84 components/Search.tsx
-badd +1 components/Categories.tsx
-badd +70 pages/categories/\[tag].tsx
-badd +39 pages/about/index.tsx
+badd +56 components/BlogDetail.tsx
+badd +4 components/Code.tsx
+badd +18 components/ThemeToggleButton.tsx
 argglobal
 %argdel
-$argadd pages/about/index.tsx
-edit pages/categories/\[tag].tsx
+edit components/Code.tsx
 argglobal
-balt pages/about/index.tsx
+balt components/BlogDetail.tsx
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -34,12 +31,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 70 - ((23 * winheight(0) + 16) / 33)
+let s:l = 7 - ((6 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 70
-normal! 0
+keepjumps 7
+normal! 019|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
