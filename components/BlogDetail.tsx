@@ -45,13 +45,13 @@ export default function BlogDetail({ post, markdown }: Props) {
             <Image
               src={post.cover}
               alt={'blog cover image'}
-              className='mt-10 mb-20 aspect-auto h-full w-full rounded-xl'
+              className='mt-10 mb-16 aspect-auto h-full w-full rounded-xl'
               width={1000}
               height={1000}
               priority
             />
           </div>
-          <div className='mx-auto m-0 p-0 tracking-wide leading-6 text-justify prose dark:prose-invert'>
+          <div className='max-w-4xl mx-auto m-0 p-0 tracking-wide leading-7 text-justify prose dark:prose-invert'>
             <Markdown
               options={{
                 overrides: {

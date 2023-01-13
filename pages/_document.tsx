@@ -36,7 +36,7 @@ class MyDocument extends Document {
             rel='fonts'
           />
         </Head>
-        <body>
+        <body className='dark:bg-zinc-900 bg-[#f1e7db]'>
           <Main />
           <NextScript />
         </body>

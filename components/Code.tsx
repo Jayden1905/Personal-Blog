@@ -1,7 +1,12 @@
+import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import {
+  oneDark,
+  oneLight,
+  materialLight,
+} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { CopyIcon, PasteIcon } from './icon'
 
 const Code = ({ children }: { children: string }) => {
@@ -29,6 +34,8 @@ const Code = ({ children }: { children: string }) => {
     'markdown'
 
   const [copied, setCopied] = useState(false)
+  const { theme } = useTheme()
+  const [currentTheme, setCurrentTheme] = useState(oneDark)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,6 +43,14 @@ const Code = ({ children }: { children: string }) => {
     }, 1000)
     return () => clearTimeout(timer)
   }, [copied])
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      setCurrentTheme(oneDark)
+    } else {
+      setCurrentTheme(oneLight)
+    }
+  }, [theme])
 
   return (
     <div className='relative'>
@@ -48,7 +63,7 @@ const Code = ({ children }: { children: string }) => {
         customStyle={{
           fontSize: '14px',
         }}
-        style={oneDark}
+        style={currentTheme}
         language={languages}
       >
         {children}
