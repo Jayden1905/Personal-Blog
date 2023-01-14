@@ -6,7 +6,6 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage'
 import globalContext from './GlobalState'
 
 type InitialStateProps = {
@@ -38,19 +37,23 @@ const { Provider, useStore } = globalContext(initialState as InitialStateProps)
 
 export default function ContextProvider({ children }: ContextProviderProps) {
   const { asPath, push, pathname } = useRouter()
-  const [history, setHistory] = useLocalStorage<string[]>('history', [])
+  const [history, setHistory] = useState<string[]>([])
 
   function back() {
-    for (let i = history.length - 2; i >= 0; i--) {
-      const route = history[i]
-      if (!route.includes('#') && route !== pathname) {
-        push(route)
+    if (history.length > 1) {
+      for (let i = history.length - 2; i >= 0; i--) {
+        const route = history[i]
+        if (!route.includes('#') && route !== pathname) {
+          push(route)
 
-        const newHistory = history.slice(0, i)
-        setHistory(newHistory)
+          const newHistory = history.slice(0, i)
+          setHistory(newHistory)
 
-        break
+          break
+        }
       }
+    } else {
+      push('/')
     }
   }
 
