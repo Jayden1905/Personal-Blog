@@ -4,8 +4,9 @@ import React, {
   ReactNode,
   useContext,
   useEffect,
-  useState
+  useState,
 } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 import globalContext from './GlobalState'
 
 type InitialStateProps = {
@@ -13,7 +14,7 @@ type InitialStateProps = {
 }
 
 const initialState = {
-  searchInput: ''
+  searchInput: '',
 }
 
 type ContextProviderProps = {
@@ -29,17 +30,17 @@ type ContextProps = {
 
 const GlobalState = createContext({} as ContextProps)
 
-export function useGlobalContext (): ContextProps {
+export function useGlobalContext(): ContextProps {
   return useContext(GlobalState)
 }
 
 const { Provider, useStore } = globalContext(initialState as InitialStateProps)
 
-export default function ContextProvider ({ children }: ContextProviderProps) {
+export default function ContextProvider({ children }: ContextProviderProps) {
   const { asPath, push, pathname } = useRouter()
-  const [history, setHistory] = useState<string[]>([])
+  const [history, setHistory] = useLocalStorage<string[]>('history', [])
 
-  function back () {
+  function back() {
     for (let i = history.length - 2; i >= 0; i--) {
       const route = history[i]
       if (!route.includes('#') && route !== pathname) {

@@ -11,4 +11,5 @@
   padding: 0;
   margin: 0 auto;
   max-width: 680px;
+  overflow: auto;
 }

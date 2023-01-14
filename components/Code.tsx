@@ -5,7 +5,6 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import {
   oneDark,
   oneLight,
-  materialLight,
 } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { CopyIcon, PasteIcon } from './icon'
 
