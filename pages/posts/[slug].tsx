@@ -57,7 +57,6 @@ const Post = ({
   post,
   continueReadingPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(continueReadingPosts)
   return (
     <motion.div
       variants={pageTransition}

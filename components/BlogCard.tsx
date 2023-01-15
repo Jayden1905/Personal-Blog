@@ -11,7 +11,7 @@ type Props = {
   post: BlogPost
 }
 
-export default function BlogCard ({ post }: Props) {
+export default function BlogCard({ post }: Props) {
   const ref = useRef<HTMLDivElement | null>(null)
   const entry = useIntersectionObserver(ref, {})
   const isVisible = !!entry?.isIntersecting
@@ -19,17 +19,13 @@ export default function BlogCard ({ post }: Props) {
   return (
     <motion.div
       ref={ref}
+      key={post.id}
       variants={focusAnimation}
       initial='hidden'
       animate={`${isVisible ? 'show' : 'hidden'}`}
       className={`blog ${post.id} group rounded-2xl border-2 border-zinc-900 border-opacity-10 p-2 pb-6 transition-all duration-200 ease-out last:mb-12 hover:border-opacity-20 dark:border-white dark:border-opacity-10 dark:hover:border-opacity-20`}
     >
-      <Link
-        href={`/posts/${post.slug}`}
-        scroll={false}
-        key={post.id}
-        className='blog'
-      >
+      <Link href={`/posts/${post.slug}`} scroll={false} className='blog'>
         <motion.div
           className={
             'blog flex flex-col gap-4 transition-all duration-200 ease-out'
