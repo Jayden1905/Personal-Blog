@@ -12,20 +12,20 @@ type ParamsProps = {
   }
 }
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
   const notionService = new NotionService()
 
   const slugs = await notionService.getSlugs()
 
   const paths = slugs.map((slug) => ({
     params: {
-      slug
-    }
+      slug,
+    },
   }))
 
   return {
     paths,
-    fallback: 'blocking'
+    fallback: 'blocking',
   }
 }
 
@@ -33,12 +33,12 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
   const notionService = new NotionService()
 
   const p = await notionService.getSingleBlogPost(slug)
-  const adjcentPosts = await notionService.getAdjacentPosts(slug)
+  const continueReadingPosts = await notionService.getSimilarPosts(slug)
 
-  if (!p || !adjcentPosts) {
+  if (!p) {
     return {
       notFound: true,
-      revalidate: 10
+      revalidate: 10,
     }
   }
 
@@ -46,23 +46,25 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
     props: {
       markdown: p.markdown,
       post: p.post,
-      adjcentPosts
+      continueReadingPosts,
     },
-    revalidate: 10
+    revalidate: 10,
   }
 }
 
 const Post = ({
   markdown,
-  post
+  post,
+  continueReadingPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(continueReadingPosts)
   return (
     <motion.div
       variants={pageTransition}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      className="max-w-5xl pb-6"
+      initial='initial'
+      animate='animate'
+      exit='exit'
+      className='max-w-5xl pb-6'
     >
       <Head>
         <title>{post.title}</title>
@@ -72,7 +74,11 @@ const Post = ({
           content={post.description}
         />
       </Head>
-      <BlogDetail post={post} markdown={markdown} />
+      <BlogDetail
+        post={post}
+        markdown={markdown}
+        continueReadingPosts={continueReadingPosts}
+      />
     </motion.div>
   )
 }

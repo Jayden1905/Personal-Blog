@@ -3,6 +3,9 @@ import { BlogPost, PostPage } from '../interfaces/schema'
 import { NotionToMarkdown } from 'notion-to-md'
 
 export default class NotionService {
+  getContinueReading(slug: string) {
+    throw new Error('Method not implemented.')
+  }
   client: Client
   n2m: NotionToMarkdown
 
@@ -172,7 +175,8 @@ export default class NotionService {
     return [previous, next].filter((post) => post !== undefined)
   }
 
-  async continueReadingPosts(slug: string): Promise<BlogPost[]> {
+  // get similar posts base on tags
+  async getSimilarPosts(slug: string): Promise<BlogPost[]> {
     const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
     const response = await this.client.databases.query({
       database_id: database,
@@ -198,15 +202,12 @@ export default class NotionService {
 
     const currentPost = posts[index]
 
-    const continueReadingPosts = posts.filter((post) => {
-      return post.tags.some((tag) => {
-        return currentPost.tags.some((currentTag) => {
-          return tag.name === currentTag.name
-        })
-      })
+    // similarPosts without currentPost
+    const similarPosts = posts.filter((post) => {
+      return post.tags.some((tag) => !currentPost.tags.includes(tag))
     })
 
-    return continueReadingPosts.slice(0, 4)
+    return similarPosts.slice(0, 3)
   }
 
   private static pageToPostTransformer(page: any): BlogPost {
