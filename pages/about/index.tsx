@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Faqs from '../../components/Faqs'
 import Layout from '../../components/Layout'
 import NotionService from '../../services/service'
-import profilePic from '../../public/me.png'
+import profilePic from '../../public/pic.jpg'
 import { getExperience, getGithubProjects } from '../../services/util'
 
 type BioProps = {
