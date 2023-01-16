@@ -3,9 +3,6 @@ import { BlogPost, PostPage } from '../interfaces/schema'
 import { NotionToMarkdown } from 'notion-to-md'
 
 export default class NotionService {
-  getContinueReading(slug: string) {
-    throw new Error('Method not implemented.')
-  }
   client: Client
   n2m: NotionToMarkdown
 
@@ -143,71 +140,6 @@ export default class NotionService {
     })
 
     return posts.map((post) => post.slug)
-  }
-
-  async getAdjacentPosts(slug: string): Promise<BlogPost[]> {
-    const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
-    const response = await this.client.databases.query({
-      database_id: database,
-      filter: {
-        property: 'Publish',
-        checkbox: {
-          equals: true,
-        },
-      },
-      sorts: [
-        {
-          property: 'Publish',
-          direction: 'descending',
-        },
-      ],
-    })
-
-    const posts = response.results.map((res) => {
-      return NotionService.pageToPostTransformer(res)
-    })
-
-    const index = posts.findIndex((post) => post.slug === slug)
-
-    const previous = posts[index - 1]
-    const next = posts[index + 1]
-
-    return [previous, next].filter((post) => post !== undefined)
-  }
-
-  // get similar posts base on tags
-  async getSimilarPosts(slug: string): Promise<BlogPost[]> {
-    const database = process.env.NOTION_BLOG_DATABASE_ID ?? ''
-    const response = await this.client.databases.query({
-      database_id: database,
-      filter: {
-        property: 'Publish',
-        checkbox: {
-          equals: true,
-        },
-      },
-      sorts: [
-        {
-          property: 'Publish',
-          direction: 'descending',
-        },
-      ],
-    })
-
-    const posts = response.results.map((res) => {
-      return NotionService.pageToPostTransformer(res)
-    })
-
-    const index = posts.findIndex((post) => post.slug === slug)
-
-    const currentPost = posts[index]
-
-    // similarPosts without currentPost
-    const similarPosts = posts.filter((post) => {
-      return post.tags.some((tag) => !currentPost.tags.includes(tag))
-    })
-
-    return similarPosts.slice(0, 3)
   }
 
   private static pageToPostTransformer(page: any): BlogPost {

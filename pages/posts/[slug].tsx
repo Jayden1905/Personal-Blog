@@ -33,7 +33,6 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
   const notionService = new NotionService()
 
   const p = await notionService.getSingleBlogPost(slug)
-  const continueReadingPosts = await notionService.getSimilarPosts(slug)
 
   if (!p) {
     return {
@@ -46,7 +45,6 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
     props: {
       markdown: p.markdown,
       post: p.post,
-      continueReadingPosts,
     },
     revalidate: 10,
   }
@@ -55,7 +53,6 @@ export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
 const Post = ({
   markdown,
   post,
-  continueReadingPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <motion.div
@@ -73,11 +70,7 @@ const Post = ({
           content={post.description}
         />
       </Head>
-      <BlogDetail
-        post={post}
-        markdown={markdown}
-        continueReadingPosts={continueReadingPosts}
-      />
+      <BlogDetail post={post} markdown={markdown} />
     </motion.div>
   )
 }

@@ -8,19 +8,13 @@ import Layout from './Layout'
 import { useGlobalContext } from './context/ContextProvider'
 import Markdown from 'markdown-to-jsx'
 import Code from './Code'
-import BlogCard from './BlogCard'
 
 type Props = {
   post: BlogPost
   markdown: any
-  continueReadingPosts: BlogPost[]
 }
 
-export default function BlogDetail({
-  post,
-  markdown,
-  continueReadingPosts,
-}: Props) {
+export default function BlogDetail({ post, markdown }: Props) {
   const { back } = useGlobalContext()
 
   return (
@@ -69,16 +63,6 @@ export default function BlogDetail({
             >
               {markdown}
             </Markdown>
-          </div>
-          <div className='mt-10'>
-            <h1 className='mb-10 text-2xl font-bold tracking-wider underline decoration-zinc-400 decoration-4 underline-offset-8 dark:decoration-zinc-700'>
-              Continue Readings
-            </h1>
-            <div className='grid grid-cols-1 gap-10'>
-              {continueReadingPosts.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </div>
           </div>
         </Layout>
       </div>
