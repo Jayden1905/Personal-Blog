@@ -4,14 +4,14 @@ import { BlogPost } from '../interfaces/schema'
 import Categories from './Categories'
 import { useGlobalContext } from './context/ContextProvider'
 
-export function useOutsideHook (
+export function useOutsideHook(
   ref: any,
   setOpen: (value: boolean) => void,
   open: boolean,
   resetFunction: () => void
 ) {
   useEffect(() => {
-    function handleClickOutside (event: any) {
+    function handleClickOutside(event: any) {
       if (
         ref.current &&
         !ref.current.contains(event.target) &&
@@ -34,7 +34,7 @@ type Props = {
   posts: BlogPost[]
 }
 
-export default function Search ({ posts }: Props) {
+export default function Search({ posts }: Props) {
   const { useStore } = useGlobalContext()
   const [searchInput, setStore] = useStore((store) => store.searchInput)
   const [open, setOpen] = useState(false)
