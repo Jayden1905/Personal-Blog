@@ -64,7 +64,7 @@ export default function ContactPage({ contactInfo }: contactPageProps) {
             </Link>
           </div>
         </div>
-        <div className='social-links mt-10 mx-auto flex gap-8 text-sm font-extralight'>
+        <div className='social-links mt-2 mx-auto flex gap-8 text-sm font-extralight'>
           <Link
             href={contactInfo.github}
             className='underline-offset-4 hover:underline'
