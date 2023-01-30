@@ -12,7 +12,7 @@ type Props = {
   slug: string
 }
 
-export default function SearchCategories({ posts, slug }: Props) {
+export default function SearchCategories(props: Props) {
   const { useStore } = useGlobalContext()
   const [searchInput, setStore] = useStore((store) => store.searchInput)
   const [open, setOpen] = useState(false)
@@ -21,7 +21,7 @@ export default function SearchCategories({ posts, slug }: Props) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const allTags = new Set<string>()
-  posts.map((post) => post.tags.map((tag) => allTags.add(tag.name)))
+  props.posts.map((post) => post.tags.map((tag) => allTags.add(tag.name)))
 
   const resetSearchInput = () => {
     setStore({ searchInput: '' })
@@ -54,7 +54,7 @@ export default function SearchCategories({ posts, slug }: Props) {
         </Link>
         <IoIosArrowForward className='text-xl font-extralight opacity-50' />
         <span className='font-extrabold text-orange-500'>
-          {capitalize(slug)}
+          {capitalize(props.slug)}
         </span>
       </div>
       <div className='flex items-center justify-center gap-4'>

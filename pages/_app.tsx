@@ -1,6 +1,6 @@
 import React from 'react'
 import type { AppProps } from 'next/app'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { Analytics } from '@vercel/analytics/react'
 import RootLayout from '../components/layout/main'
 import '../styles/globals.css'
@@ -13,19 +13,21 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
       <RootLayout>
-        <div className='max-w-5xl h-full mt-28 mx-auto px-4'>
-          <AnimatePresence
-            mode='wait'
-            initial={true}
-            onExitComplete={() => {
-              if (typeof window !== 'undefined') {
-                window.scrollTo({ top: 0 })
-              }
-            }}
-          >
-            <Component {...pageProps} key={router.route} />
-            <Analytics />
-          </AnimatePresence>
+        <div className="mx-auto mt-28 h-full max-w-5xl px-4">
+          <AnimateSharedLayout>
+            <AnimatePresence
+              mode="wait"
+              initial={true}
+              onExitComplete={() => {
+                if (typeof window !== 'undefined') {
+                  window.scrollTo({ top: 0 })
+                }
+              }}
+            >
+              <Component {...pageProps} key={router.route} />
+              <Analytics />
+            </AnimatePresence>
+          </AnimateSharedLayout>
         </div>
       </RootLayout>
     </>

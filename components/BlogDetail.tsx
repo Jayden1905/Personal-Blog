@@ -1,24 +1,24 @@
-import React from "react";
-import moment from "moment";
-import { BlogPost, Tag } from "../interfaces/schema";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import Layout from "./Layout";
-import { useGlobalContext } from "./context/ContextProvider";
-import Markdown from "markdown-to-jsx";
-import Code from "./Code";
+import React from 'react'
+import moment from 'moment'
+import { BlogPost, Tag } from '../interfaces/schema'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { IoMdArrowRoundBack } from 'react-icons/io'
+import Layout from './Layout'
+import { useGlobalContext } from './context/ContextProvider'
+import Markdown from 'markdown-to-jsx'
+import Code from './Code'
 
 type Props = {
-  post: BlogPost;
-  markdown: any;
-};
+  post: BlogPost
+  markdown: any
+}
 
 export default function BlogDetail({ post, markdown }: Props) {
-  const { back } = useGlobalContext();
+  const { back } = useGlobalContext()
 
   return (
-    <div>
+    <motion.div>
       <div onClick={back} className="flex cursor-pointer items-center gap-2">
         <IoMdArrowRoundBack className="text-xl" role="button" />
         <span>Back</span>
@@ -31,7 +31,7 @@ export default function BlogDetail({ post, markdown }: Props) {
                 <div
                   key={tag.id}
                   className={
-                    "rounded-md bg-gray-300 p-2 text-sm dark:bg-zinc-700"
+                    'rounded-md bg-gray-300 p-2 text-sm dark:bg-zinc-700'
                   }
                 >
                   {tag.name}
@@ -40,16 +40,18 @@ export default function BlogDetail({ post, markdown }: Props) {
             </div>
             <motion.h1 className="text-4xl">{post.title}</motion.h1>
             <p className="text-md mt-auto dark:text-gray-300">
-              {moment(post.date).format("MMMM DD, YYYY")}
+              {moment(post.date).format('MMMM DD, YYYY')}
             </p>
-            <Image
-              src={post.cover}
-              alt={"blog cover image"}
-              className="mt-10 mb-16 aspect-auto h-full w-full rounded-xl"
-              width={1000}
-              height={1000}
-              priority
-            />
+            <motion.div layoutId="cover-image">
+              <Image
+                src={post.cover}
+                alt={'blog cover image'}
+                className="mt-10 mb-16 aspect-auto h-full w-full rounded-xl"
+                width={1000}
+                height={1000}
+                priority
+              />
+            </motion.div>
           </div>
           <div className="prose m-0 mx-auto max-w-4xl p-0 leading-7 tracking-wide dark:prose-invert">
             <Markdown
@@ -66,6 +68,6 @@ export default function BlogDetail({ post, markdown }: Props) {
           </div>
         </Layout>
       </div>
-    </div>
-  );
+    </motion.div>
+  )
 }
