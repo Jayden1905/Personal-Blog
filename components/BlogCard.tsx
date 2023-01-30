@@ -31,10 +31,7 @@ export default function BlogCard({ post }: Props) {
             'blog flex flex-col gap-4 transition-all duration-200 ease-out'
           }
         >
-          <motion.div
-            layoutId="cover-image"
-            className="blog relative h-80 w-full overflow-hidden rounded-xl"
-          >
+          <div className="blog relative h-80 w-full overflow-hidden rounded-xl">
             <Image
               src={post.cover}
               alt={'blog cover image'}
@@ -45,7 +42,7 @@ export default function BlogCard({ post }: Props) {
               className="blog block aspect-auto h-full w-full object-cover object-center"
               priority
             />
-          </motion.div>
+          </div>
           <div className="blog flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <div

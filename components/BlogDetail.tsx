@@ -18,7 +18,7 @@ export default function BlogDetail({ post, markdown }: Props) {
   const { back } = useGlobalContext()
 
   return (
-    <motion.div>
+    <div>
       <div onClick={back} className="flex cursor-pointer items-center gap-2">
         <IoMdArrowRoundBack className="text-xl" role="button" />
         <span>Back</span>
@@ -42,16 +42,14 @@ export default function BlogDetail({ post, markdown }: Props) {
             <p className="text-md mt-auto dark:text-gray-300">
               {moment(post.date).format('MMMM DD, YYYY')}
             </p>
-            <motion.div layoutId="cover-image">
-              <Image
-                src={post.cover}
-                alt={'blog cover image'}
-                className="mt-10 mb-16 aspect-auto h-full w-full rounded-xl"
-                width={1000}
-                height={1000}
-                priority
-              />
-            </motion.div>
+            <Image
+              src={post.cover}
+              alt={'blog cover image'}
+              className="mt-10 mb-16 aspect-auto h-full w-full rounded-xl"
+              width={1000}
+              height={1000}
+              priority
+            />
           </div>
           <div className="prose m-0 mx-auto max-w-4xl p-0 leading-7 tracking-wide dark:prose-invert">
             <Markdown
@@ -68,6 +66,6 @@ export default function BlogDetail({ post, markdown }: Props) {
           </div>
         </Layout>
       </div>
-    </motion.div>
+    </div>
   )
 }
